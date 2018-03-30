@@ -13,8 +13,8 @@
         {% block script %} {% endblock %}
     </head>
     <body>
-        {% if status %}
-            Hello {{ status }}
+        {% if user.is_authenticated %}
+            Hello {{ user.first_name }}
         {% else %}
             Hii
         {% endif %}

@@ -11,3 +11,4 @@ ENV/
 *.sqlite3
 *.db
 db
+.idea/*

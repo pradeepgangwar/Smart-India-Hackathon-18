@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^accounts/login/$', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
     url(r'^accounts/logout/$', auth_views.logout, name='logout', kwargs={'next_page':'/'}),
     url(r'', include(('sih.urls', 'sih'), namespace='sih')),
+    url(r'^auth/', include('social_django.urls', namespace='social')),
 ]

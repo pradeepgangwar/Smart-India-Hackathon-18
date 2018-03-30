@@ -15,11 +15,11 @@ def signup(request):
             # password = id_generator()
             user.set_password(form.cleaned_data['password'])
             user.save()
-            return render(request, 'sih/base.html')
+            return render(request, 'sih/base.html', )
     else:
         form = UserForm()
 
-    return render(request, 'sih/signup.html', {'form': form, 'status':'logged_in'})
+    return render(request, 'sih/signup.html', {'form': form})
 
 def logout(request):
     logout(request)
