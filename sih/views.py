@@ -1,25 +1,30 @@
 from django.shortcuts import render
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
+from .forms import UserForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
-            new_user = User.objects.create_user(**form.cleaned_data)
-            login(new_user)
-            # redirect, or however you want to get to the main view
-            return HttpResponseRedirect('base.html')
+            user = form.save(commit=False)
+            email = form.cleaned_data['email']
+            user.username = email.split('@')[0]
+            # password = id_generator()
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return render(request, 'sih/base.html')
     else:
         form = UserForm()
 
-    return render(request, 'signup.html', {'form': form, 'status':'logged_in'})
+    return render(request, 'sih/signup.html', {'form': form, 'status':'logged_in'})
 
 def logout(request):
     logout(request)
 
-    return HttpResponseRedirect('signup.html')
+    return HttpResponseRedirect('sih/signup.html')
 
 def index(request):
-    return HttpResponseRedirect('base.html')
+    return render(request, 'sih/base.html')

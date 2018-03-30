@@ -2,8 +2,10 @@
 
 {% block content %}
 
+<!--{{ form }}-->
+
 <div class="container">
-   <form method="post" action="{% url 'discuss:register' %}" style="" class="register-form">
+   <form method="post" action="{% url 'sih:signup' %}" style="" class="register-form">
        {% csrf_token %}
        <div class="form-group">
         <label for="first_name" style="float:left;">First Name</label>
@@ -13,10 +15,6 @@
         <label for="last_name" style="float:left;">Last Name</label>
         <input type="text" class="form-control" id="last_name" placeholder="Last Name" name="last_name">
       </div>
-       <div class="form-group">
-        <label for="username" style="float:left;">Username</label>
-        <input type="text" class="form-control" id="username" placeholder="Username" name="username">
-      </div>
       <div class="form-group">
         <label for="email" style="float:left;">Email address</label>
         <input type="email" class="form-control" id="email" placeholder="Email" name="email">
@@ -25,11 +23,7 @@
         <label for="password" style="float:left;">Password</label>
         <input type="password" class="form-control" id="password" placeholder="Password" name="password">
       </div>
-       <div class="form-group">
-        <label for="confirm_password" style="float:left;">Confirm Password</label>
-        <input type="password" class="form-control" id="confirm_password" placeholder="Confirm Password" name="confirm_pass">
-      </div>
-           <button type="submit" class="btn" style="color:#00e6e6; border:2px solid #00e6e6; background-color:white; font-size:15px;"><b>Sign Up</b></button>
+       <button type="submit" class="btn" style="color:#00e6e6; border:2px solid #00e6e6; background-color:white; font-size:15px;"><b>Sign Up</b></button>
     </form>
 </div>
 
