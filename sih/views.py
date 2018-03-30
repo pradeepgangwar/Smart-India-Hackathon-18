@@ -24,7 +24,7 @@ def signup(request):
 def logout(request):
     logout(request)
 
-    return HttpResponseRedirect('sih/signup.html')
+    return render(request, 'sih/base.html')
 
 def index(request):
     return render(request, 'sih/base.html')
