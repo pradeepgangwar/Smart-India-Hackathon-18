@@ -1,210 +1,124 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-	<link rel="stylesheet" type="text/css" href="">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>Profile</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../static/css/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 </head>
+
 <body>
-	<div class="container-fluid" id="second">
-	  <nav id="navTop">
-        <div class="nav-wrapper">
-          <ul class="right hide-on-med-and-down">
-          </ul>
-        </div>
-      </nav>
-      <nav id="navLogo">
-        <div class="nav-wrapper">
-          <ul class="right hide-on-med-and-down">
-            <li><a class="waves-effect waves-light btn-small" id="signup">Signup</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <form method="post" action="{% url 'sih:profile' %}" class="register-form" enctype="multipart/form-data">
-        {% csrf_token %}
-    <div class="row container">
-		<div class="col s12">
-			<div class="row">
-
-				<div class="col s12 m12 l12"><h1 class="font-2" style="text-align: center;">Complete your profile</h1></div>
-
-			</div>
-		</div>
-    <div class="col s12">
-      <div class="row">
-      	<div class="col s12">
-      		<div class="row">
-      			<div class="col s12 m4 l2"></div>
-		        <div class="input-field col s12 m4 l8 font-2">
-		          <input type="text" id="autocomplete-input" class="autocomplete" name="age">
-		          <label for="autocomplete-input">Age</label>
-		        </div>
-		        <div class="col s12 m4 l2"></div>
-		      </div>
-		    </div>
-		    <div class="col s12">
-      		<div class="row">
-      			<div class="col s12 m4 l2"></div>
-		        <div class="input-field col s12 m4 l8 font-2">
-		          <label>Gender:</label>
-		        </div>
-		        <div class="col s12 m4 l2"></div>
-		      </div>
-		    </div>
-		    <div class="col s12">
-		    	<div class="row">
-		    		<div class="col s12 m4 l2"></div>
-		        <div class="input-field col s12 m4 l8 font-2">
-                <select class="form-control" id="gender" placeholder="Gender" name="gender">
-                          {% for value, text in gender_choices %}
-                              <option value={{value}}>{{ value }}</option>
-                          {% endfor %}
-                </select>
-		        </div>
-		        <div class="col s12 m4 l2"></div>
-		      </div>
-		    </div>
-        <div class="col s12">
-          <div class="row">
-            <div class="col s12 m4 l2"></div>
-            <div class="input-field col s12 m4 l8 font-2">
-                <select class="form-control" id="category" placeholder="Category" name="category">
-                          {% for value, text in category_choices %}
-                              <option value={{value}}>{{ value }}</option>
-                          {% endfor %}
-                </select>
+    <div class="container-fluid" id="second">
+        <ul id="dropdown1" class="dropdown-content">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="/accounts/logout">Logout</a>
+            </li>
+        </ul>
+        <nav id="navTop">
+            <div class="nav-wrapper">
+                <img src="../../static/img/logo.svg" width="120" height="120">
+                <ul class="right hide-on-med-and-down"></ul>
             </div>
-            <div class="col s12 m4 l2"></div>
-          </div>
-        </div>
-            <div class="col s12">
-		    	<div class="row">
-		    		<div class="col s12 m4 l2"></div>
-		        <div class="input-field col s12 m4 l8 font-2">
-                <select class="form-control" id="qualification" placeholder="Qalification" name="qualification">
-                          {% for value, text in qualifications_choices %}
-                              <option value={{value}}>{{ value }}</option>
-                          {% endfor %}
-                </select>
-		        </div>
-		        <div class="col s12 m4 l2"></div>
-		      </div>
-		    </div>
-		    <div class="col s12">
-      		<div class="row">
-      			<div class="col s12 m4 l2"></div>
-		        <div class="input-field col s12 m4 l8 font-2">
-		          <label>Your CV:</label>
-		        </div>
-		        <div class="col s12 m4 l2"></div>
-		      </div>
-		    </div>
-        <div class="col s12">
-      		<div class="row">
-      			<div class="col s12 m4 l2"></div>
-		        <div class="input-field col s12 m4 l8 font-2">
-						  <div class="file-field input-field">
-					      <label>
-					        <span>Select File</span>
-					        <input type="file" name="resume">
-					      </label>
-					      <div class="file-path-wrapper">
-					        <input class="file-path validate" type="text">
-					      </div>
-					    </div>
-		        </div>
-		        <div class="col s12 m4 l2"></div>
-		      </div>
-		    </div>
-		    <div class="col s12">
-      		<div class="row">
-      			<div class="col s12 m4 l2"></div>
-		        <div class="input-field col s12 m4 l8 font-2">
-		          <label>Profile Image:</label>
-		        </div>
-		        <div class="col s12 m4 l2"></div>
-		      </div>
-		    </div>
-		    <div class="col s12">
-      		<div class="row">
-      			<div class="col s12 m4 l2"></div>
-		        <div class="input-field col s12 m4 l8 font-2">
-						  <div class="file-field input-field">
-					      <label>
-					        <span>Select File</span>
-					        <input type="file" name="profilepicture">
-					      </label>
-					      <div class="file-path-wrapper">
-					        <input class="file-path validate" type="text">
-					      </div>
-					    </div>
-		        </div>
-		        <div class="col s12 m4 l2"></div>
-		      </div>
-		    </div>
-		    <div class="col s12">
-      		<div class="row">
-      			<div class="col s12 m4 l2"></div>
-		        <div class="input-field col s12 m4 l8 font-1">
-		          <label>Subscribe:</label>
-		        </div>
-		        <div class="col s12 m4 l2"></div>
-		      </div>
-		    </div>
-		    <div class="col s12">
-      		<div class="row">
-      			<div class="col s12 m4 l2"></div>
-		        <div class="input-field col s12 m4 l8 font-2">
-		          <p>
-					      <label>
-					        <input type="checkbox" class="filled-in" name="is_subscribed" value="True"/>
-					        <span>Yes</span>
-					      </label>
-					    </p>
-		        </div>
-		        <div class="col s12 m4 l2"></div>
-		      </div>
-		    </div>
-      </div>
-    </div>
-    <div class="col s12">
-			<div class="row">
-				<div class="col s12 m12 l12 font-1" style="text-align: center;">
-				    <input class="btn waves-effect waves-light btn-large" type="submit" name="action">
+        </nav>
+        <nav id="navLogo">
+            <div class="nav-wrapper">
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <img src="../../static/img/dp.jpg" width="45" height="45" id="dp">
+                    </li>
+                    <li>
+                        <a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">Profile
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container" id="content">
+            <div class="row">
+                <div class="s12" style="text-align:center; margin-top:5em;">
+                    <img class="responsive-img" width="95" height="95" src="../../static/img/dp.jpg">
                 </div>
-
-			</div>
-  	</div>
-    </div>
-    </form>
-
-    {% if uploaded_resume_url %}
-    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_resume_url }}</a></p>
-    {% endif %}
-    {% if uploaded_profilepicture_url %}
-        <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_profilepicture_url }}</a></p>
-    {% endif %}
-
-  	<footer class="page-footer" style="background-color: white;opacity: 0.7;">
-
-         <div class="footer-copyright" style="background-color: #a056d1;opacity: 1;">
+                <div class="s12" style="text-align:center; margin-top:5em;">
+                    <i class="fas fa-edit" style="color:#a00037;"></i> <span style="margin-left:1rem; color:#a00037;"> Edit Your Profile</span>
+                </div>
+            </div>
+            <table class="centered responsive-table" style="margin-top:5em;">
+                <tbody>
+                    <tr>
+                        <td>First Name</td>
+                        <td class="detail">{{ user.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td class="detail">{{ user.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td class="detail">{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Age</td>
+                        <td class="detail">{{ person.age }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td class="detail">{{ person.gender }}</td>
+                    </tr>
+                    <tr>
+                        <td>Qualifications</td>
+                        <td class="detail">{{ person.qualification }}</td>
+                    </tr>
+                    <tr>
+                        <td>Resume</td>
+                        <td class="detail">{{ person.resume }}</td>
+                    </tr>
+                    <tr>
+                        <td>Is Subscribed</td>
+                        <td class="detail">True</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- <footer class="page-footer" style="background-color: white;opacity: 0.7;">
            <div class="container">
 
-
            </div>
-         </div>
-     </footer>
+           <div class="footer-copyright" style="background-color: #a056d1;opacity: 1;">
+             <div class="container">
 
+
+             </div>
+           </div>
+         </footer> -->
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-trigger").dropdown();
+            $('.sidenav').sidenav();
+            $('.datepicker').datepicker();
+            $('.tooltipped').tooltip();
+            $("#addForm").hide();
+            $("#addBut").click(function () {
+                $("#addForm").fadeIn(500);
+                $("#content").hide();
+            });
+            $("#back").click(function () {
+                $("#addForm").hide();
+                $("#content").fadeIn(500);
+            });
+        });
+    </script>
 </body>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    $('select').formSelect();
-  });
-</script>
-<script src="front.js"></script>
+
 </html>

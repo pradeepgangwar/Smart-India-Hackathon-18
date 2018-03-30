@@ -86,6 +86,17 @@ def index(request):
     return render(request, 'sih/index.html',{'dept_result':dept_result,'vacancy_result':vacancy_result,'all':all})
 
 def profile(request):
+    if request.user.is_authenticated:
+        try:
+            person = UserProfile.objects.get(user = request.user)
+        except UserProfile.DoesNotExist:
+            user = None
+            return render(request, 'sih/profile.html')            
+        return render(request, 'sih/profile.html', { 'person':person})
+    else:
+        return redirect("/")
+
+def profile_edit(request):
     form = None
     Elementry = 'Elementry'
     HighSchool =  'High School'
@@ -150,7 +161,7 @@ def profile(request):
                 Profile = UserProfile.objects.create(user=user,age=age,gender=gender,category=category,resume=resume,profilepicture=profilepicture,is_subscribed=is_subscribed,qualification=qualification)
                 Profile.save()
 
-                return render(request, 'sih/profile.html', {
+                return render(request, 'sih/complete_profile.html', {
                     'uploaded_resume_url': uploaded_resume_url,
                     'uploaded_profilepicture_url': uploaded_profilepicture_url,
                     'qualifications_choices':QUALIFICATIONS,
@@ -161,7 +172,7 @@ def profile(request):
         else:
             form = UserProfileForm()
 
-        return render(request, 'sih/profile.html', {'form': form, 'status':'logged_in','qualifications_choices':QUALIFICATIONS,'gender_choices':GENDER,'category_choices':CATEGORY})
+        return render(request, 'sih/complete_profile.html', {'form': form, 'status':'logged_in','qualifications_choices':QUALIFICATIONS,'gender_choices':GENDER,'category_choices':CATEGORY})
 
     else:
         return redirect('sih:signup')
