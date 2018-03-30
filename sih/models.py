@@ -56,6 +56,8 @@ class DeptProfile(models.Model):
     role = models.CharField(max_length=30, choices=ROLES)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.dept_name
 
 class vacancy(models.Model):
     title = models.CharField(max_length=300,null=False)
@@ -67,6 +69,8 @@ class vacancy(models.Model):
     end_date = models.DateTimeField(null=False)
     updated_on = models.DateTimeField(auto_now = True)
     results_out = models.BooleanField(default=False)
+    def __str__(self):
+        return self.title
 
 class applications(models.Model):
     Pending = 'Pending'
@@ -83,6 +87,8 @@ class applications(models.Model):
     dept = models.ForeignKey(vacancy,on_delete=models.CASCADE)
     application_status = models.CharField(max_length=30, choices=STATUS)
     sop = models.TextField(null=False)
+    def __str__(self):
+        return (self.user.username + " - " + self.dept.title)
 
 class query(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -90,11 +96,14 @@ class query(models.Model):
     question = models.CharField(max_length=300, null=False)
     answer = models.TextField(null=True)
     is_read = models.BooleanField(default=False)
+    def __str__(self):
+        return (self.user.username + " - " + self.dept.title)    
 
 class notifications(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     dept = models.ForeignKey(vacancy,on_delete=models.CASCADE)
     message = models.CharField(max_length=300, null=False)
     is_read = models.BooleanField(default=False)
-
+    def __str__(self):
+        return (self.user.username + " - " + self.dept.title)    
 

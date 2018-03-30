@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import UserForm, UserProfileForm
+from .forms import UserForm, UserProfileForm, Vacancy
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, vacancy, DeptProfile
 from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
@@ -74,7 +74,8 @@ def profile(request):
             filename_profilepicture = fs.save(profilepicture.name, profilepicture)
             uploaded_profilepicture_url = fs.url(filename_profilepicture)
 
-            is_subscribed = True
+            if request.POST.get('is_subscribed')=="True":
+                is_subscribed = True
             user = User.objects.get(username=request.user.username)
 
             Profile = UserProfile.objects.create(user=user,age=age,gender=gender,resume=resume,profilepicture=profilepicture,is_subscribed=is_subscribed,qualification=qualification)
@@ -91,3 +92,24 @@ def profile(request):
         form = UserProfileForm()
 
     return render(request, 'sih/profile.html', {'form': form, 'status':'logged_in','qualifications_choices':QUALIFICATIONS,'age_choices':GENDER})
+
+def vacancies(request):
+
+    if request.method=="POST":
+        form = Vacancy(request.POST)
+        if form.is_valid():
+            title = request.POST.get('title')
+            description = request.POST.get('description')
+            num_slots = int(request.POST.get('num_slots'))
+            start_date = request.POST.get('start_date')
+            end_date = request.POST.get('end_date')
+            if request.POST.get('results_out')=="True":
+                results_out = True
+            dept_user = DeptProfile.objects.get(user=request.user)
+            New_vacancy = vacancy.objects.create(title=title,description=description,num_slots=num_slots,start_date=start_date,end_date=end_date,results_out=results_out,dept_id=dept_user)
+            New_vacancy.save()
+    else:
+        form = Vacancy()
+        
+    return render(request, 'sih/vacancies.html', {'form': form, 'status':'logged_in'})
+
