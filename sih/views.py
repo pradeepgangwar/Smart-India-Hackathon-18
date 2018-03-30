@@ -29,7 +29,20 @@ def logout(request):
     return render(request, 'sih/base.html')
 
 def index(request):
-    return render(request, 'sih/base.html')
+    dept_result = None
+    vacancy_result  = None
+    all = True
+    if request.method=="POST":
+        search = request.POST.get('search')
+        dept_result = DeptProfile.objects.filter(dept_name=search)
+        vacancy_result = vacancy.objects.filter(title=vacancy_result)
+        all = False
+
+    else:
+        dept_result = DeptProfile.objects.filter()
+        vacancy_result = vacancy.objects.filter()
+        
+    return render(request, 'sih/base.html',{'dept_result':dept_result,'vacancy_result':vacancy_result,'all':all})
 
 def profile(request):
     form = None
