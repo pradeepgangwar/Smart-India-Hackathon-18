@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import UserForm, UserProfileForm, Vacancy,Applications,Query
@@ -16,6 +16,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 import os
 
@@ -218,15 +219,17 @@ def vacancies(request):
     else:
         return redirect('sih:signup')
 
-def vacancy_detail(request):
+def vacancy_detail(request, pk):
     refer = request.META.get('HTTP_REFERER')
-    vacancy = get_object_or_404(vacancy, pk=pk)
-    if vacancy.end_date < timezone.now():
+    vacancy_detail = get_object_or_404(vacancy, pk=pk)
+    dept_result = DeptProfile.objects.get(id=vacancy_detail.id)
+    print(dept_result)
+    if vacancy_detail.end_date < timezone.now():
         messages.warning(request, 'This vacancy is expired')
         return redirect('/')
     else:
-        return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy, 'refer': refer})
-    return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy, 'refer': refer})
+        return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy_detail, 'refer': refer, 'dept': dept_result})
+    return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy_detail, 'refer': refer, 'dept': dept_result})
 
 def query(request):
     if request.user.is_authenticated:

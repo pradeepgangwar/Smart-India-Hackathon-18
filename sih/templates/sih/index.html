@@ -78,13 +78,13 @@
             <table class="striped">
               <thead>
                 <tr>
-                  <th><p class="dept">DEPT. OF {{vacancy.dept_id.dept_name}}</p></th>
+                  <th><a href="vacancy/{{vacancy.id}}"><p  class="dept">{{vacancy.title}}</p></a></th>
+                  <th class="vanacies">{{vacancy.num_slots}}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><p class="title">{{vacancy.title}}</p><td>
-                  <td class="vanacies">{{vacancy.num_slots}}</td>
+                  <td><p class="title">DEPT. OF {{vacancy.dept_id.dept_name}}</p><td>
                 </tr>
               </tbody>
             </table>
