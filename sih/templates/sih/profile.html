@@ -13,11 +13,19 @@
       </div>
        <div class="form-group">
         <label for="gender" style="float:left;">Gender</label>
-        <input type="text" class="form-control" id="gender" placeholder="Gender" name="gender">
+        <select class="form-control" id="gender" placeholder="Gender" name="gender">
+          {% for value, text in age_choices %}
+              <option value={{value}}>{{ value }}</option>
+          {% endfor %}
+        </select>
       </div>
       <div class="form-group">
         <label for="qualification" style="float:left;">Qualification</label>
-        <input type="text" class="form-control" id="qualification" placeholder="Qalification" name="qualification">
+        <select class="form-control" id="qualification" placeholder="Qalification" name="qualification">
+          {% for value, text in qualifications_choices %}
+              <option value={{value}}>{{ value }}</option>
+          {% endfor %}
+        </select>
       </div>
       <div class="form-group">
         <label for="resume" style="float:left;">Resume</label>

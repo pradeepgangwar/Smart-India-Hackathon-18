@@ -32,13 +32,39 @@ def index(request):
     return render(request, 'sih/base.html')
 
 def profile(request):
+    form = None
+    Elementry = 'Elementry'
+    HighSchool =  'High School'
+    SeniorSecondary = 'Secondary Education'
+    Undergraduate = 'Undergraduate'
+    Postgraduate = 'Postgraduate'
+    Doctorate = 'Doctoral Degree'
+
+    QUALIFICATIONS = (
+        (Elementry, Elementry),
+        (HighSchool,  HighSchool),
+        (SeniorSecondary, SeniorSecondary),
+        (Undergraduate, Undergraduate),
+        (Postgraduate, Postgraduate),
+        (Doctorate, Doctorate),
+    )
+
+    Male = 'Male'
+    Female =  'Female'
+    Others = 'Others'
+    
+    GENDER = (
+        (Male, Male),
+        (Female,  Female),
+        (Others, Others),
+    )
     if request.method=="POST":
         form = UserProfileForm(request.POST)
         if form.is_valid():
             print (1)
             age = form.cleaned_data['age']
-            gender = form.cleaned_data['gender']
-            qualification = form.cleaned_data['qualification']
+            gender = request.POST.get('gender')
+            qualification = request.POST.get('qualification')
             resume = request.FILES['resume']
             profilepicture = request.FILES['profilepicture']
             fs = FileSystemStorage()
@@ -51,15 +77,17 @@ def profile(request):
             is_subscribed = True
             user = User.objects.get(username=request.user.username)
 
-            Profile = UserProfile.objects.create(user=user,age=age,gender=gender,resume=resume,profilepicture=profilepicture,is_subscribed=is_subscribed,quailfication=quailfication)
+            Profile = UserProfile.objects.create(user=user,age=age,gender=gender,resume=resume,profilepicture=profilepicture,is_subscribed=is_subscribed,qualification=qualification)
             Profile.save()
 
             return render(request, 'sih/profile.html', {
                 'uploaded_resume_url': uploaded_resume_url,
-                'uploaded_profilepicture_url': uploaded_profilepicture_url
+                'uploaded_profilepicture_url': uploaded_profilepicture_url,
+                'qualifications_choices':QUALIFICATIONS,
+                'age_choices':GENDER
             })
 
     else:
         form = UserProfileForm()
 
-    return render(request, 'sih/profile.html', {'form': form, 'status':'logged_in'})
+    return render(request, 'sih/profile.html', {'form': form, 'status':'logged_in','qualifications_choices':QUALIFICATIONS,'age_choices':GENDER})
