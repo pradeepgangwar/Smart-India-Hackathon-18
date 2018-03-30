@@ -9,4 +9,7 @@ urlpatterns = [
     url(r'^vacancies/$', views.vacancies, name='vacancies'),
     url(r'^vacancy/(?P<pk>\d+)/$', views.vacancy_detail, name='vacancy_detail'),
     url(r'^activate/$', views.activate, name='activate'),
+    url(r'^dept_admin/$', views.dept_admin, name='dept_admin'),
+    url(r'^dashboard/$',views.dashboard, name='dashboard'),
+    url(r'^apply/(?P<job1>[-\w]+)/$',views.apply, name='apply')
 ]
