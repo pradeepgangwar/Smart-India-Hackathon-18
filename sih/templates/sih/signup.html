@@ -1,9 +1,9 @@
-<!DOCTYPE html>
 <html>
+{% load staticfiles %}  
 <head>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<link href="../../static/css/styles.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Signup</title>
 </head>
@@ -12,6 +12,7 @@
 <div class="container-fluid" id="second">
 	  <nav id="navTop">
         <div class="nav-wrapper">
+          <img src="../../static/img/logo.svg" width="120" height="120">
           <ul class="right hide-on-med-and-down">
           </ul>
         </div>
@@ -23,7 +24,7 @@
           </ul>
         </div>
       </nav>
-    </div>
+    
 
   	<form class="row container" method="post" action="{% url 'sih:signup' %}">
         {% csrf_token %}
@@ -81,8 +82,7 @@
                 </div>
             </div>
         </form>
-  	</div>
-
+        </div>
     <footer class="page-footer" style="background-color: white;opacity: 0.7;">
 
          <div class="footer-copyright" style="background-color: #a056d1;opacity: 1;">
@@ -92,7 +92,6 @@
            </div>
          </div>
        </footer>
-
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </html>

@@ -1,13 +1,10 @@
-<!DOCTYPE html>
 <html>
+{% load staticfiles %}   
 <head>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<link href="../../static/css/styles.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<title>Login</title>
 </head>
 <body>
@@ -15,6 +12,7 @@
     <div class="container-fluid" id="second">
 	  <nav id="navTop">
         <div class="nav-wrapper">
+          <img src="../../static/img/logo.svg" width="120" height="120">
           <ul class="right hide-on-med-and-down">
           </ul>
         </div>
@@ -26,7 +24,6 @@
           </ul>
         </div>
       </nav>
-    </div>
     <br/><br/>
 
     <div class="row">
@@ -41,16 +38,20 @@
         </div>
     </center>
     {% endif %}
-    </div>
+    </div> 
 
-  	<div class="container fluid" class="text-align:center;">
-  		<div class="col s12">
+  		<!-- <div class="col s12">
   			<div class="row">
   				<div class="col s12 m12 l12"><h1  class ="font-2"style="text-align: center;">Login</h1></div>
   			</div>
-  		</div>
-        <form method="post">
+  		</div> -->
+        <form method="post" class="row container">
           {% csrf_token %}
+          <div class="col s12">
+              <div class="row">
+                <div class="col s12 m12 l12"><h1  class ="font-2"style="text-align: center;">Login</h1></div>
+              </div>
+            </div>
             <div class="row">
               <div class="col s12">
                   <div class="row">
@@ -73,18 +74,24 @@
                     </div>
               <div class="row">
                   <div class="col s12 m12 l12 font-1" style="text-align: center;">
-                  <input type="submit" class="btn waves-effect waves-light btn-large" name="submit">
+                  <!-- <input type="submit" class="btn waves-effect waves-light btn-large" name="submit"> -->
+                  <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Submit</button>
                   </div>
               </div>
+              <div class="row">
+                  <div class="s12" style="text-align:center;">
+                    <a href="/auth/login/google-oauth2"><img src="../../static/img/google.png"></a>
+                  </div>
+                </div>
         </form>
-    </div>
+  
     
-    <div class="row">
+    <!-- <div class="row">
       <div class="s12" style="text-align:center;">
         <a href="/auth/login/google-oauth2"><img src="../../static/img/google.png"></a>
       </div>
+    </div> -->
     </div>
-
   	<footer class="page-footer" style="background-color: white;opacity: 0.7;">
          <div class="footer-copyright" style="background-color: #a056d1;opacity: 1;">
            <div class="container">
