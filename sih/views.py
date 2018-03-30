@@ -14,6 +14,8 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 import os
 
@@ -215,6 +217,16 @@ def vacancies(request):
 
     else:
         return redirect('sih:signup')
+
+def vacancy_detail(request):
+    refer = request.META.get('HTTP_REFERER')
+    vacancy = get_object_or_404(vacancy, pk=pk)
+    if vacancy.end_date < timezone.now():
+        messages.warning(request, 'This vacancy is expired')
+        return redirect('/')
+    else:
+        return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy, 'refer': refer})
+    return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy, 'refer': refer})
 
 def query(request):
     if request.user.is_authenticated:
