@@ -44,7 +44,7 @@ def signup(request):
             )
             act = activation.objects.create(user=user, email=to, token=token)
             act.save()
-            return render(request, 'sih/base.html', )
+            return redirect('http://localhost:8000/accounts/login/')
     else:
         form = UserForm()
         
@@ -83,7 +83,7 @@ def index(request):
         dept_result = DeptProfile.objects.filter()
         vacancy_result = vacancy.objects.filter()
         
-    return render(request, 'sih/base.html',{'dept_result':dept_result,'vacancy_result':vacancy_result,'all':all})
+    return render(request, 'sih/index.html',{'dept_result':dept_result,'vacancy_result':vacancy_result,'all':all})
 
 def profile(request):
     form = None

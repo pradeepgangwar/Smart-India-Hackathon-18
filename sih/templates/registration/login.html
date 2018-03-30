@@ -1,14 +1,81 @@
-{% extends 'sih/base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Login</title>
+</head>
+<body>
 
-{% block title %}Login{% endblock %}
+    <div class="container-fluid" id="second">
+	  <nav id="navTop">
+        <div class="nav-wrapper">
+          <ul class="right hide-on-med-and-down">
+          </ul>
+        </div>
+      </nav>
+      <nav id="navLogo">
+        <div class="nav-wrapper">
+          <ul class="right hide-on-med-and-down">
+            <li><a class="waves-effect waves-light btn-small" id="signup">Signup</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
-{% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+  	<div class="row container">
+  		<div class="col s12">
+  			<div class="row">
+  				<div class="col s12 m12 l12"><h1  class ="font-2"style="text-align: center;">Login</h1></div>
+  			</div>
+  		</div>
+        <form method="post">
+          {% csrf_token %}
+          <div class="col s12">
+            <div class="row">
+              <div class="col s12">
+                  <div class="row">
+                      <div class="col s12 m4 l2"></div>
+                      <div class="input-field col s12 m4 l8 font-2">
+                        <input type="text" id="autocomplete-input" class="autocomplete" name="username">
+                        <label for="autocomplete-input">Username</label>
+                      </div>
+                      <div class="col s12 m4 l2"></div>
+                    </div>
+                  </div>
+              <div class="col s12">
+                  <div class="row">
+                      <div class="col s12 m4 l2"></div>
+                      <div class="input-field col s12 m4 l8 font-2">
+                        <input type="password" id="autocomplete-input" class="autocomplete" name="password">
+                        <label for="autocomplete-input">Password</label>
+                      </div>
+                      <div class="col s12 m4 l2"></div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+          <div class="col s12">
+              <div class="row">
+                  <div class="col s12 m12 l12 font-1" style="text-align: center;">
+                  <input type="submit" class="btn waves-effect waves-light btn-large" name="submit">
+                  </div>
+              </div>
+          </div>
+        </form>
+  	</div>
 
-  <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
-{% endblock %}
+  	<footer class="page-footer" style="background-color: white;opacity: 0.7;">
+         <div class="footer-copyright" style="background-color: #a056d1;opacity: 1;">
+           <div class="container">
+
+
+           </div>
+         </div>
+    </footer>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+</html>
