@@ -1,0 +1,156 @@
+body , html {
+  /* font-family: 'Roboto', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  height: 100%;
+}
+
+main {
+   flex: 1 0 auto;
+}
+
+#explore {
+  border-radius: 30px;
+  height: 45px;
+  width: 160px;
+  line-height: 48px;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: #fff;
+  color: black;
+}
+
+#navTop {
+  height: 2em;
+  background-color: #59016b;
+}
+
+#navTop ul a {
+  color: black;
+}
+
+#navLogo {
+  height: 4.5em;
+  background-color: #c056d1;
+  opacity: 0.6;
+}
+
+#signup, #login {
+  border-radius: 30px;
+  width: 100px;
+  background-color: #f3efef;
+  opacity: 1;
+  color: #a00037;
+  font-weight: 700;
+}
+
+#signup {
+  margin-right: 2em;
+  margin-top: 0.2em;
+}
+
+footer {
+  position: relative;
+  margin-top: 30em;
+}
+
+#open {
+  font-size: 120px;
+  text-align: center;
+  padding-top: 20px;
+  color: #f3efef;
+  text-transform: uppercase;
+}
+
+#glassb, #closeb {
+   margin-top: -0.3em;
+}
+
+
+#searchArea {
+  height: 3em;
+  margin-top: 5em;
+  border-radius: 30px;
+  background-color: #bb034d;
+  opacity: 0.79;
+}
+
+#search {
+  border-radius: 30px;
+}
+
+#search::placeholder {
+  color: white;
+}
+
+#search:before #glassb, #closeb {
+  color: white;
+}
+
+#search:focus #glassb, #closeb {
+  color: #bb034d;
+}
+
+#search:focus #closeb {
+  color: #bb034d;
+}
+
+.page-footer .container .row {
+  text-align: center;
+}
+
+.page-footer .container {
+  height: 5em;
+}
+
+#navTopfirst {
+  background-color: white;
+}
+
+#navTopfirst ul a {
+  color: #a00037;
+  margin-right: 2em;
+  font-weight: 700;
+}
+
+#dash {
+  height: 640px;
+  opacity: 0.8;
+}
+
+#dash row {
+  padding-top: 20%;
+}
+
+#first {
+  height: 680px;
+  font-family: 'Montserrat', sans-serif;
+  opacity: 0.85;
+}
+
+#first {
+  background: url('../img/bg1.jpg');
+  bac
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#list {
+  padding-top: 5.5em;
+  line-height: 100px;
+  color: white;
+  font-weight: 700;
+}
+
+#dp {
+  border-radius: 50%;
+  border: 2px solid #59016b;
+  margin-top: 0.5em;
+}
+
+#username {
+  font-weight: 700;
+}
