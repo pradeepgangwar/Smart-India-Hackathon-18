@@ -45,7 +45,7 @@ main {
   opacity: 0.6;
 }
 
-#signup, #login {
+#signup, #login, #adds {
   border-radius: 30px;
   width: 100px;
   background-color: #f3efef;
@@ -205,4 +205,8 @@ footer {
   width: 2rem;
   height: 2rem;
   color: #a00037;
+}
+
+#addForm {
+  padding-top: 5em;
 }

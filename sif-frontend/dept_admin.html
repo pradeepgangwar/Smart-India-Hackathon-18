@@ -102,9 +102,56 @@
             </table>
             <br>
           </div>
-          <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal tooltipped" data-position="left" data-tooltip="Add a new job position" style="position: fixed;margin-bottom: 5em;">
+          <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal tooltipped" id="addBut" data-position="left" data-tooltip="Add a new job position" style="position: fixed;margin-bottom: 5em;">
             <i class="material-icons" id="add">add</i>
           </a>
+      </div>
+      <div class="container" id="addForm">
+          <h4 style="text-align: center;">Add a job position</h4>
+          <br>
+          <div class="row">
+              <form class="col s12" method="POST" action="{% url 'sih:vacancies' %}" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="title" type="text" class="validate" name="title">
+                    <label for="title">Title</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="num_slots" type="text" class="validate" name="num_slots">
+                    <label for="num_slots">Number of slots</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <!-- <input id="description" type="text_area" class="validate" name="description"> -->
+                    <textarea id="description" class="materialize-textarea" name="description"></textarea>
+                    <label for="description">Description</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" class="datepicker" id="start_date" name="start_date">
+                    <label for="title">Start Date</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" class="datepicker" id="end_date" name="end_date">
+                    <label for="title">End Date</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <label>
+                      <input type="checkbox" />
+                      <span>Results out</span>
+                    </label>
+                  </div>
+                  <div class="input-field col s6" style="text-align: right;">
+                    <a class="waves-effect waves-light btn-small" id="adds">ADD</a>
+                  </div>
+                </div>
+                <br>
+              </form>
+            </div>
       </div>
         <!-- <footer class="page-footer" style="background-color: white;opacity: 0.7;">
            <div class="container">
@@ -125,7 +172,13 @@
       $(document).ready(function() {
           $(".dropdown-trigger").dropdown();
           $('.sidenav').sidenav();
+          $('.datepicker').datepicker();
           $('.tooltipped').tooltip();
+          $("#addForm").hide();
+          $("#addBut").click(function() {
+            $("#addForm").fadeIn(500);
+            $("#content").hide();
+          });
       });
     </script>
   </body>
