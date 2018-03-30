@@ -1,15 +1,146 @@
-{% extends 'sih/base.html' %}
+<html>
+{% load staticfiles %}
+  <head>
+    <title>Material Components for the web</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="../../static/css/styles.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container-fluid" id="first">
+      <nav id="navTopfirst">
+        <div class="nav-wrapper">
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#">ABOUT US</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid" id="dash">
+        <div class="row">
+          <div class="col l7">
 
-{% block content %}
+          </div>
+          <div class="col l5">
+            <ul id="list">
+              <li><h2>One place for all<br>Government jobs</h2></li>
+              <li><h5>Finding Govt. jobs had never been so easy</h5></li>
+              <li><a class="waves-effect waves-light btn-small" id="explore">Explore now</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" id="second">
 
-{% if all is true %}
+      <nav id="navTop">
+        <div class="nav-wrapper">
+          <ul class="right hide-on-med-and-down">
+          </ul>
+        </div>
+      </nav>
+      <nav id="navLogo">
+        <div class="nav-wrapper">
+          <ul class="right hide-on-med-and-down">
+            <li><a href="http://localhost:8000/signup/" class="waves-effect waves-light btn-small" id="signup">Signup</a></li>
+            <li><a href="http://localhost:8000/accounts/login/" class="waves-effect waves-light btn-small" id="login">Login</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container" id="content">
+        <nav id="searchArea">
+          <div class="nav-wrapper">
+            <form>
+              <div class="input-field">
+                <input id="search" type="search" required placeholder="Search for jobs">
+                <label class="label-icon" for="search"><i class="material-icons" id="glassb">search</i></label>
+                <i class="material-icons" id="closeb">close</i>
+              </div>
+            </form>
+          </div>
+        </nav>
+
+        <h5 style="font-size: 14px;">found <b>{{vacancy_result.count}}</b> results</h5>
+        <hr style="opacity: 0.5;" />
+        <div id="first5">
+        {% if vacancy_result.count <= 5 %}
+          {% for vacancy in vacancy_result %}
+
+            <div class="eachResult">
+            <table class="striped">
+              <thead>
+                <tr>
+                  <th><p class="dept">DEPT. OF {{vacancy.dept_id.dept_name}}</p></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><p class="title">{{vacancy.title}}</p><td>
+                  <td class="vanacies">{{vacancy.num_slots}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+          </div>
+
+          {% endfor %}
+        {%endif%}
+        </div>
+          {% if vacancy_result.count > 5 %}
+
+            <a class="waves-effect waves-light btn-small" id="more">More...</a>
+
+          {%endif%}
+          <div id="all">
+            {% for vacancy in vacancy_result %}
+          <div class="eachResult">
+            <table class="striped">
+              <thead>
+                <tr>
+                  <th><p class="dept">DEPT. OF {{vacancy.dept_id.dept_name}}</p></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><p class="title">{{vacancy.title}}</p><td>
+                  <td class="vanacies">{{vacancy.num_slots}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+          </div>
+          {%endfor%}
+          </div>
+      </div>
+
+      <footer class="page-footer" style="background-color: white;opacity: 0.7;">
+         <div class="footer-copyright" style="background-color: #a056d1;opacity: 1;">
+           <div class="container">
 
 
+           </div>
+         </div>
+       </footer>
 
-{% else %}
-
-
-
-{% endif %}
-
-{% endblock %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $(".dropdown-trigger").dropdown();
+          $('.sidenav').sidenav();
+          $("#second").hide();
+          $("#all").hide();
+          $("#explore").click(function() {
+             $("#first").hide();
+             $("#second").show(500);
+          });
+          $("#more").click(function() {
+             $("#all").show();
+             $("#first5").hide();
+          });
+      });
+    </script>
+  </body>
+</html>

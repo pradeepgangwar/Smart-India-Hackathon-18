@@ -45,7 +45,7 @@ main {
   opacity: 0.6;
 }
 
-#signup, #login {
+#signup, #login, #adds, #back {
   border-radius: 30px;
   width: 100px;
   background-color: #f3efef;
@@ -137,6 +137,7 @@ footer {
   height: 680px;
   font-family: 'Montserrat', sans-serif;
   opacity: 0.85;
+  width: 100%;
 }
 
 #first {
@@ -205,4 +206,8 @@ footer {
   width: 2rem;
   height: 2rem;
   color: #a00037;
+}
+
+#addForm {
+  padding-top: 5em;
 }
