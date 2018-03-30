@@ -54,6 +54,15 @@ main {
   font-weight: 700;
 }
 
+#apply {
+  border-radius: 30px;
+  width: 100px;
+  background-color: #f3efef;
+  opacity: 1;
+  color: #a00037;
+  font-weight: 700;
+}
+
 #signup {
   margin-right: 2em;
   margin-top: 0.2em;
