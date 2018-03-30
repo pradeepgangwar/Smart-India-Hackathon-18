@@ -88,6 +88,7 @@ class query(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     dept = models.ForeignKey(vacancy,on_delete=models.CASCADE)
     question = models.CharField(max_length=300, null=False)
+    answer = models.TextField(null=True)
     is_read = models.BooleanField(default=False)
 
 class notifications(models.Model):
