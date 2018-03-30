@@ -218,6 +218,14 @@ def vacancies(request):
 
     else:
         return redirect('sih:signup')
+		
+		
+def dept_admin(request):
+    application = applications.objects.filter()
+    vacancies = vacancy.objects.filter()
+    
+    return render(request,'sih/dept_admin.html',{'applications':application,'applications2':application,'vacancies':vacancies})
+
 
 def vacancy_detail(request, pk):
     refer = request.META.get('HTTP_REFERER')
