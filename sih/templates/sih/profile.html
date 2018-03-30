@@ -1,0 +1,46 @@
+{% extends 'sih/base.html' %}
+
+{% block content %}
+
+<!--{{ form }}-->
+
+<div class="container">
+   <form method="post" action="{% url 'sih:profile' %}" style="" class="register-form" enctype="multipart/form-data">
+       {% csrf_token %}
+       <div class="form-group">
+        <label for="age" style="float:left;">Age</label>
+        <input type="text" class="form-control" id="age" placeholder="Age" name="age">
+      </div>
+       <div class="form-group">
+        <label for="gender" style="float:left;">Gender</label>
+        <input type="text" class="form-control" id="gender" placeholder="Gender" name="gender">
+      </div>
+      <div class="form-group">
+        <label for="qualification" style="float:left;">Qualification</label>
+        <input type="text" class="form-control" id="qualification" placeholder="Qalification" name="qualification">
+      </div>
+      <div class="form-group">
+        <label for="resume" style="float:left;">Resume</label>
+        <input type="file" class="form-control" id="resume" placeholder="Resume" name="resume">
+      </div>
+      <div class="form-group">
+        <label for="profilepicture" style="float:left;">Profile Picture</label>
+        <input type="file" class="form-control" id="profilepicture" placeholder="Profile Picture" name="profilepicture">
+      </div>
+      <div class="form-group">
+        <label for="is_subscribed" style="float:left;">Subscribe to us</label>
+        <input type="checkbox" class="form-control" id="is_subscribed" placeholder="Subscribe" name="is_subscribed" value="true">
+      </div>
+       <button type="submit" class="btn" style="color:#00e6e6; border:2px solid #00e6e6; background-color:white; font-size:15px;"><b>Add Profile</b></button>
+    </form>
+
+    {% if uploaded_resume_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_resume_url }}</a></p>
+  {% endif %}
+  {% if uploaded_profilepicture_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_profilepicture_url }}</a></p>
+  {% endif %}
+
+</div>
+
+{% endblock %}

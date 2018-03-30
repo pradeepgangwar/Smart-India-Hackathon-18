@@ -140,3 +140,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='259699748112-ajfhjn82k7qscn32rb3c09khc5ctt35a.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '25ARwFgmkSVBtzxwZ3--WZKF'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

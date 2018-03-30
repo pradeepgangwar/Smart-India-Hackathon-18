@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf.urls import url
 from django.contrib.auth import views
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 from sih import views
 
 
@@ -28,3 +30,6 @@ urlpatterns = [
     url(r'', include(('sih.urls', 'sih'), namespace='sih')),
     url(r'^auth/', include('social_django.urls', namespace='social')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

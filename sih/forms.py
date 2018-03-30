@@ -11,7 +11,7 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('age', 'gender', 'resume', 'profilepicture', 'qualification')
+        fields = ('age', 'gender', 'resume', 'profilepicture', 'qualification','is_subscribed')
 
 class DeptProfile(forms.ModelForm):
 
