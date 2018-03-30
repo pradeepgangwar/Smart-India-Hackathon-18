@@ -112,6 +112,19 @@ def profile(request):
         (Female,  Female),
         (Others, Others),
     )
+
+    GENERAL = 'GENERAL'
+    OBC =  'OBC'
+    SC = 'SC'
+    ST = 'ST'
+
+    CATEGORY = (
+        (GENERAL, GENERAL),
+        (OBC,  OBC),
+        (SC, SC),
+        (ST, ST),
+    )
+
     if request.user.is_authenticated:
         if request.method=="POST":
             form = UserProfileForm(request.POST)
@@ -119,6 +132,7 @@ def profile(request):
                 print (1)
                 age = form.cleaned_data['age']
                 gender = request.POST.get('gender')
+                category = request.POST.get('category')
                 qualification = request.POST.get('qualification')
                 resume = request.FILES['resume']
                 profilepicture = request.FILES['profilepicture']
@@ -133,20 +147,21 @@ def profile(request):
                     is_subscribed = True
                 user = User.objects.get(username=request.user.username)
 
-                Profile = UserProfile.objects.create(user=user,age=age,gender=gender,resume=resume,profilepicture=profilepicture,is_subscribed=is_subscribed,qualification=qualification)
+                Profile = UserProfile.objects.create(user=user,age=age,gender=gender,category=category,resume=resume,profilepicture=profilepicture,is_subscribed=is_subscribed,qualification=qualification)
                 Profile.save()
 
                 return render(request, 'sih/profile.html', {
                     'uploaded_resume_url': uploaded_resume_url,
                     'uploaded_profilepicture_url': uploaded_profilepicture_url,
                     'qualifications_choices':QUALIFICATIONS,
-                    'age_choices':GENDER
+                    'gender_choices':GENDER,
+                    'category_choices':CATEGORY
                 })
 
         else:
             form = UserProfileForm()
 
-        return render(request, 'sih/profile.html', {'form': form, 'status':'logged_in','qualifications_choices':QUALIFICATIONS,'age_choices':GENDER})
+        return render(request, 'sih/profile.html', {'form': form, 'status':'logged_in','qualifications_choices':QUALIFICATIONS,'gender_choices':GENDER,'category_choices':CATEGORY})
 
     else:
         return redirect('sih:signup')
@@ -159,14 +174,17 @@ def vacancies(request):
                 title = request.POST.get('title')
                 description = request.POST.get('description')
                 num_slots = int(request.POST.get('num_slots'))
+                location = request.POST.get('location')
+                
                 start_date = request.POST.get('start_date')
+
                 end_date = request.POST.get('end_date')
                 if request.POST.get('results_out')=="True":
                     results_out = True
                 else:
                     results_out = False
                 dept_user = DeptProfile.objects.get(user=request.user)
-                New_vacancy = vacancy.objects.create(title=title,description=description,num_slots=num_slots,start_date=start_date,end_date=end_date,results_out=results_out,dept_id=dept_user)
+                New_vacancy = vacancy.objects.create(title=title,description=description,num_slots=num_slots,location=location,start_date=start_date,end_date=end_date,results_out=results_out,dept_id=dept_user)
                 New_vacancy.save()
         else:
             form = Vacancy()

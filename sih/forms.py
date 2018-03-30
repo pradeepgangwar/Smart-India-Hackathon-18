@@ -11,7 +11,7 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('age', 'gender', 'resume', 'profilepicture', 'qualification','is_subscribed')
+        fields = ('age', 'gender', 'category', 'resume', 'profilepicture', 'qualification','is_subscribed')
 
 class DeptProfile(forms.ModelForm):
 
@@ -23,7 +23,7 @@ class Vacancy(forms.ModelForm):
 
     class Meta:
         model = vacancy
-        fields = ('title', 'description', 'num_slots', 'start_date', 'end_date', 'results_out')
+        fields = ('title', 'description', 'num_slots', 'location', 'start_date', 'end_date', 'results_out')
 
 class Applications(forms.ModelForm):
 

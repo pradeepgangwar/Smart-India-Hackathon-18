@@ -30,10 +30,23 @@ class UserProfile(models.Model):
         (Others, Others),
     )
 
+    GENERAL = 'GENERAL'
+    OBC =  'OBC'
+    SC = 'SC'
+    ST = 'ST'
+
+    CATEGORY = (
+        (GENERAL, GENERAL),
+        (OBC,  OBC),
+        (SC, SC),
+        (ST, ST),
+    )
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_cofirmed = models.BooleanField(default=False)
     age = models.IntegerField(null=False)
     gender = models.CharField(max_length=10, choices=GENDER)
+    category = models.CharField(max_length=10, choices=CATEGORY,null=False,default='GENERAL')
     resume = models.FileField(blank=True, null =True)
     profilepicture = models.FileField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -65,6 +78,7 @@ class vacancy(models.Model):
     dept_id = models.ForeignKey(DeptProfile, on_delete=models.CASCADE)
     num_applicants = models.IntegerField(default=0, null=False)
     num_slots = models.IntegerField(default=0, null=False)
+    location = models.CharField(max_length=100,null=False,default='Delhi')
     start_date = models.DateTimeField(null=False)
     end_date = models.DateTimeField(null=False)
     updated_on = models.DateTimeField(auto_now = True)
