@@ -3,25 +3,66 @@ from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import UserForm, UserProfileForm, Vacancy,Applications,Query
 from django.contrib.auth.models import User
-from .models import UserProfile, vacancy, DeptProfile, applications,query,notifications
+from .models import UserProfile, vacancy, DeptProfile, applications,query,notifications, activation
 from django.core.files.storage import FileSystemStorage
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
+
+import os
 
 # Create your views here.
 def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
+            to_email = []
             user = form.save(commit=False)
+            user.is_active = False
             email = form.cleaned_data['email']
             user.username = email.split('@')[0]
-            # password = id_generator()
             user.set_password(form.cleaned_data['password'])
+            mail_subject = 'Activate your blog account.'
+            to = str(form.cleaned_data['email'])
+            to_email.append(to)
             user.save()
+            uid = str(user.pk)
+            token = str(account_activation_token.make_token(user))
+            username = str(user.username)
+            from_email = 'pradeepgangwar39@gmail.com'
+            message = "Hi "+username+" Please click on the link to confirm your registration, http://localhost:8000/activate?email="+to+"&token="+token+"&uid="+uid
+            send_mail(
+                mail_subject,
+                message,
+                from_email,
+                to_email,
+            )
+            act = activation.objects.create(user=user, email=to, token=token)
+            act.save()
             return render(request, 'sih/base.html', )
     else:
         form = UserForm()
-
+        
     return render(request, 'sih/signup.html', {'form': form})
+
+def activate(request):
+    email = request.GET['email']
+    token = request.GET['token']
+    uid = request.GET['uid']
+    user = User.objects.get(id=uid)
+    act = activation.objects.filter(email=email, token=token, user=user)
+
+    if act is not None:
+        user.is_active = True
+        user.save()
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
 
 def logout(request):
     logout(request)

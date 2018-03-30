@@ -73,6 +73,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eRozgaar.wsgi.application'
 
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'pradeepgangwar39@gmail.com'
+EMAIL_HOST_PASSWORD = 'euavmdiktxbocrow'
+EMAIL_PORT = 465
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
