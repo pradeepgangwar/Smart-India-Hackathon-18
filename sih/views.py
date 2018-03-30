@@ -128,7 +128,7 @@ def profile(request):
 
                 filename_profilepicture = fs.save(profilepicture.name, profilepicture)
                 uploaded_profilepicture_url = fs.url(filename_profilepicture)
-
+                is_subscribed = False
                 if request.POST.get('is_subscribed')=="True":
                     is_subscribed = True
                 user = User.objects.get(username=request.user.username)
@@ -163,6 +163,8 @@ def vacancies(request):
                 end_date = request.POST.get('end_date')
                 if request.POST.get('results_out')=="True":
                     results_out = True
+                else:
+                    results_out = False
                 dept_user = DeptProfile.objects.get(user=request.user)
                 New_vacancy = vacancy.objects.create(title=title,description=description,num_slots=num_slots,start_date=start_date,end_date=end_date,results_out=results_out,dept_id=dept_user)
                 New_vacancy.save()
