@@ -13,6 +13,7 @@ from .tokens import account_activation_token
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.contrib.auth.decorators import login_required
 
 import os
 
@@ -70,6 +71,8 @@ def logout(request):
     return render(request, 'sih/base.html')
 
 def index(request):
+    # user_id = request.user
+    request.session['username'] = request.user.username
     dept_result = None
     vacancy_result  = None
     all = True
@@ -85,6 +88,8 @@ def index(request):
         
     return render(request, 'sih/index.html',{'dept_result':dept_result,'vacancy_result':vacancy_result,'all':all})
 
+
+@login_required
 def profile(request):
     if request.user.is_authenticated:
         try:
@@ -98,6 +103,12 @@ def profile(request):
 
 def profile_edit(request):
     form = None
+    request.session['username'] = request.user.username
+    user = User.objects.filter(username=request.user.username)
+    print(user)
+    userProfile = UserProfile.objects.get(user=request.user)
+    print(userProfile)
+
     Elementry = 'Elementry'
     HighSchool =  'High School'
     SeniorSecondary = 'Secondary Education'

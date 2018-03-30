@@ -19,11 +19,12 @@
       <nav id="navLogo">
         <div class="nav-wrapper">
           <ul class="right hide-on-med-and-down">
-            <li><a class="waves-effect waves-light btn-small" id="signup">Signup</a></li>
+            <li><a class="waves-effect waves-light btn-small" id="signup" href="/accounts/login/">Login</a></li>
           </ul>
         </div>
       </nav>
     </div>
+
   	<form class="row container" method="post" action="{% url 'sih:signup' %}">
         {% csrf_token %}
   		<div class="col s12">

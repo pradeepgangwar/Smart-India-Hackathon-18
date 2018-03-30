@@ -42,10 +42,17 @@
       </nav>
       <nav id="navLogo">
         <div class="nav-wrapper">
-          <ul class="right hide-on-med-and-down">
-            <li><a href="http://localhost:8000/signup/" class="waves-effect waves-light btn-small" id="signup">Signup</a></li>
-            <li><a href="http://localhost:8000/accounts/login/" class="waves-effect waves-light btn-small" id="login">Login</a></li>
-          </ul>
+          {% if request.session.username != "" %}
+            <ul class="right hide-on-med-and-down">
+              <li>{{ request.session.username }}</li>
+              <!--<li><a href="http://localhost:8000/accounts/login/" class="waves-effect waves-light btn-small" id="login">Login</a></li>-->
+            </ul>
+          {% else %}
+            <ul class="right hide-on-med-and-down">
+              <li><a href="http://localhost:8000/signup/" class="waves-effect waves-light btn-small" id="signup">Signup</a></li>
+              <li><a href="http://localhost:8000/accounts/login/" class="waves-effect waves-light btn-small" id="login">Login</a></li>
+            </ul>
+          {% endif %}
         </div>
       </nav>
       <div class="container" id="content">
