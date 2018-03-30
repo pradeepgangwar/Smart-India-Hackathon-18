@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 body , html {
   /* font-family: 'Roboto', sans-serif; */
   font-family: 'Montserrat', sans-serif;
@@ -10,6 +11,13 @@ body , html {
 main {
    flex: 1 0 auto;
 }
+
+
+.btn {
+  border-radius: 30px;
+  background-color: #bb034d;
+}
+
 
 #explore {
   border-radius: 30px;
