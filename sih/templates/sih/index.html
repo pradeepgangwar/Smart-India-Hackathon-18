@@ -1,4 +1,5 @@
 <html>
+{% load staticfiles %}
   <head>
     <title>Material Components for the web</title>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
@@ -60,126 +61,59 @@
           </div>
         </nav>
 
-        <h5 style="font-size: 14px;">found <b>3</b> results<h5>
+        <h5 style="font-size: 14px;">found <b>{{vacancy_result.count}}</b> results</h5>
         <hr style="opacity: 0.5;" />
-        <div class="eachResult">
-          <table class="striped">
-            <thead>
-              <tr>
-                <th><p class="dept">DEPT. OF DESIGN</p></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><p class="title">UI/UX Design</p><td>
-                <td class="vanacies">5</td>
-              </tr>
-            </tbody>
-          </table>
-          <br>
-        </div>
-        <div class="eachResult">
-          <table class="striped">
+        <div id="first5">
+        {% if vacancy_result.count <= 5 %}
+          {% for vacancy in vacancy_result %}
+
+            <div class="eachResult">
             <table class="striped">
               <thead>
                 <tr>
-                  <th><p class="dept">DEPT. OF SOUPS</p></th>
+                  <th><p class="dept">DEPT. OF {{vacancy.dept_id.dept_name}}</p></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><p class="title">Mixture sciences</p><td>
-                  <td class="vanacies">7</td>
+                  <td><p class="title">{{vacancy.title}}</p><td>
+                  <td class="vanacies">{{vacancy.num_slots}}</td>
                 </tr>
               </tbody>
             </table>
             <br>
+          </div>
+
+          {% endfor %}
+        {%endif%}
         </div>
-        <div class="eachResult">
-          <table class="striped">
+          {% if vacancy_result.count > 5 %}
+
+            <a class="waves-effect waves-light btn-small" id="more">More...</a>
+
+          {%endif%}
+          <div id="all">
+            {% for vacancy in vacancy_result %}
+          <div class="eachResult">
             <table class="striped">
               <thead>
                 <tr>
-                  <th><p class="dept">DEPT. OF SOUPS</p></th>
+                  <th><p class="dept">DEPT. OF {{vacancy.dept_id.dept_name}}</p></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><p class="title">Mixture sciences</p><td>
-                  <td class="vanacies">7</td>
+                  <td><p class="title">{{vacancy.title}}</p><td>
+                  <td class="vanacies">{{vacancy.num_slots}}</td>
                 </tr>
               </tbody>
             </table>
             <br>
-        </div>
-        <div class="eachResult">
-          <table class="striped">
-            <table class="striped">
-              <thead>
-                <tr>
-                  <th><p class="dept">DEPT. OF SOUPS</p></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><p class="title">Mixture sciences</p><td>
-                  <td class="vanacies">7</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-        </div>
-        <div class="eachResult">
-          <table class="striped">
-            <table class="striped">
-              <thead>
-                <tr>
-                  <th><p class="dept">DEPT. OF SOUPS</p></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><p class="title">Mixture sciences</p><td>
-                  <td class="vanacies">7</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-        </div>
-        <div class="eachResult">
-          <table class="striped">
-            <table class="striped">
-              <thead>
-                <tr>
-                  <th><p class="dept">DEPT. OF SOUPS</p></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><p class="title">Mixture sciences</p><td>
-                  <td class="vanacies">7</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-        </div>
-        <div class="eachResult">
-          <table class="striped">
-            <thead>
-              <tr>
-                <th><p class="dept">DEPT. OF COMPUTERS</p></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><p class="title">Chip Design</p><td>
-                <td class="vanacies">4</td>
-              </tr>
-            </tbody>
-          </table>
-          <br>
-        </div>
+          </div>
+          {%endfor%}
+          </div>
       </div>
+
       <footer class="page-footer" style="background-color: white;opacity: 0.7;">
          <div class="footer-copyright" style="background-color: #a056d1;opacity: 1;">
            <div class="container">
@@ -197,9 +131,14 @@
           $(".dropdown-trigger").dropdown();
           $('.sidenav').sidenav();
           $("#second").hide();
+          $("#all").hide();
           $("#explore").click(function() {
              $("#first").hide();
              $("#second").show(500);
+          });
+          $("#more").click(function() {
+             $("#all").show();
+             $("#first5").hide();
           });
       });
     </script>
