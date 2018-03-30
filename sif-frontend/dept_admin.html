@@ -146,6 +146,7 @@
                     </label>
                   </div>
                   <div class="input-field col s6" style="text-align: right;">
+                    <a class="waves-effect waves-light btn-small" id="back">BACK</a>&nbsp;
                     <a class="waves-effect waves-light btn-small" id="adds">ADD</a>
                   </div>
                 </div>
@@ -178,6 +179,10 @@
           $("#addBut").click(function() {
             $("#addForm").fadeIn(500);
             $("#content").hide();
+          });
+          $("#back").click(function() {
+            $("#addForm").hide();
+            $("#content").fadeIn(500);
           });
       });
     </script>

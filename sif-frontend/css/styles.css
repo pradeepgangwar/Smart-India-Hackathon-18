@@ -45,7 +45,7 @@ main {
   opacity: 0.6;
 }
 
-#signup, #login, #adds {
+#signup, #login, #adds, #back {
   border-radius: 30px;
   width: 100px;
   background-color: #f3efef;
