@@ -100,7 +100,8 @@ class applications(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     dept = models.ForeignKey(vacancy,on_delete=models.CASCADE)
     application_status = models.CharField(max_length=30, choices=STATUS)
-    sop = models.TextField(null=False)
+    applied_on = models.DateTimeField(auto_now = True,null=True)
+    sop = models.TextField(null=False,default="Hi")
     def __str__(self):
         return (self.user.username + " - " + self.dept.title)
 
