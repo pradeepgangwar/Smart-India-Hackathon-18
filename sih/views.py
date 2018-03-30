@@ -245,5 +245,107 @@ def applications(request):
     else:
         return redirect('sih:signup')
 
+def dashboard(request):
+    global message
+    vacancie = vacancy.objects.filter()
+    v = []
+    applied = []
+    for i in vacancie:
+        if applications.objects.filter(user=request.user,dept=i).count()==0:
+            v.append(i)
+        else:
+            applied.append(i)
 
 
+    department = DeptProfile.objects.filter()
+    locations = []
+    for vac in vacancie:
+        if vac.location not in locations:
+            locations.append(vac.location)
+
+    if request.method=="POST":
+        pass
+    else:
+        pass
+
+    vacancie=v
+    return render(request,'sih/dashboard.html',{'num_of_applied':len(applied),'applied':applied,'num_of_vacancies':len(vacancie),'vacancies':vacancie,'department':department,'locations':locations,'message':message})
+
+
+def apply(request,job1):
+    global message
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        if applications.objects.filter(dept=vacancy.objects.get(id=job1),user=request.user).count()!=0:
+            message="already applied for this job"
+            return redirect('sih:dashboard')
+
+        count=0
+        if profile.category=="GENERAL":
+            vacancy1 = vacancy.objects.get(id=job1)
+            
+            all_applications = applications.objects.filter(dept=vacancy1)
+            for app in all_applications:
+                profile1 = UserProfile.objects.get(user=app.user)
+                if profile1.category=="GENERAL":
+                    count+=1
+
+            if count >= 0.5*vacancy1.num_slots:
+                message = "No seat available"
+                return redirect('sih:dashboard')
+            else:
+                vacancy1.num_applicants = vacancy1.num_applicants + 1
+                vacancy1.save()
+                applications.objects.create(user=request.user,dept=vacancy1,application_status="Pending").save()
+
+        if profile.category=="OBC":
+            vacancy1 = vacancy.objects.get(id=job1)
+            all_applications = applications.objects.filter(dept=vacancy1)
+            for app in all_applications:
+                profile1 = UserProfile.objects.get(user=app.user)
+                if profile1.category=="OBC":
+                    count+=1
+            if count >= 0.3*vacancy1.num_slots:
+                message = "No seat available"
+                return redirect('sih:dashboard')
+            else:
+                vacancy1.num_applicants = vacancy1.num_applicants + 1
+                vacancy1.save()
+                applications.objects.create(user=request.user,dept=vacancy1,application_status="Pending").save()
+                message="applied sucessfully"
+
+        if profile.category=="SC":
+            vacancy1 = vacancy.objects.get(id=job1)
+            all_applications = applications.objects.filter(dept=vacancy1)
+            for app in all_applications:
+                profile1 = UserProfile.objects.get(user=app.user)
+                if profile1.category=="SC":
+                    count+=1
+            if count >= 0.1*vacancy1.num_slots:
+                message = "No seat available"
+                return redirect('sih:dashboard')
+            else:
+                vacancy1.num_applicants = vacancy1.num_applicants + 1
+                vacancy1.save()
+                applications.objects.create(user=request.user,dept=vacancy1,application_status="Pending").save()
+                message="applied sucessfully"       
+        if profile.category=="ST":
+            vacancy1 = vacancy.objects.get(id=job1)
+            all_applications = applications.objects.filter(dept=vacancy1)
+            for app in all_applications:
+                profile1 = UserProfile.objects.get(user=app.user)
+                if profile1.category=="ST":
+                    count+=1
+            if count >= 0.1*vacancy1.num_slots:
+                message = "No seat available"
+                return redirect('sih:dashboard')
+            else:
+                vacancy1.num_applicants = vacancy1.num_applicants + 1
+                vacancy1.save()
+                applications.objects.create(user=request.user,dept=vacancy1,application_status="Pending").save()
+                message="applied sucessfully"
+
+        return redirect('sih:dashboard')
+
+    else:
+        return redirect('sih:signup')
