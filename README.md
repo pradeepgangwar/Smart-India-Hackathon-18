@@ -16,6 +16,6 @@
 
 ## Admin Dashboard
 
-![alt](./sif-frontend/img/admin_dash.png)
+![alt](./sif-frontend/img/admin_dash1.png)
 
 ![alt](./sif-frontend/img/admin_dash2.png)
