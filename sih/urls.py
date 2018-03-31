@@ -8,9 +8,11 @@ urlpatterns = [
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^vacancies/(?P<deptID>\d+)/$', views.vacancies, name='vacancies'),
     url(r'^vacancy/(?P<pk>\d+)/$', views.vacancy_detail, name='vacancy_detail'),
+    url(r'^view_profile/(?P<userID>\d+)/$', views.view_profile, name='view_profile'),
     url(r'^activate/$', views.activate, name='activate'),
     url(r'^dept_admin/$', views.dept_admin, name='dept_admin'),
     url(r'^dashboard/$',views.dashboard, name='dashboard'),
+    url(r'^dashboard/filter/$',views.filter, name='filter'),
     url(r'^apply/(?P<job1>[-\w]+)/$',views.apply, name='apply'),
     url(r'^change_status/(?P<jobID>\d+)/$', views.change_status, name='change_status'),
 ]

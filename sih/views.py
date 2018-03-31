@@ -77,8 +77,6 @@ def logout(request):
 
 def index(request):
     # user_id = request.user
-    if request.user.is_authenticated:
-        return redirect('/dashboard')
     request.session['username'] = request.user.username
     dept_result = None
     vacancy_result  = None
@@ -300,7 +298,12 @@ def query(request):
         return redirect('sih:signup')
 
 
+@login_required
 def dashboard(request):
+    deptProfile = DeptProfile.objects.filter(user=request.user).count()
+    if deptProfile != 0:
+        return redirect('sih:dept_admin')
+
     global message
     vacancie = vacancy.objects.filter()
     v = []
@@ -319,8 +322,11 @@ def dashboard(request):
             locations.append(vac.location)
 
     if request.method=="POST":
+        print(request.POST.get('start_date'))
         depart = request.POST.get('department')
         loca = request.POST.get('location')
+        print(depart)
+        print(loca)
         if depart:
             dep_id = DeptProfile.objects.get(dept_name=depart)
             v = vacancy.objects.filter(dept_id=dep_id)
@@ -328,25 +334,37 @@ def dashboard(request):
             v = vacancy.objects.filter(location=loca)
 
     else:
+        print(request.method)
         pass
 
     try:
-
         person = UserProfile.objects.get(user = request.user)
             
     except UserProfile.DoesNotExist:
-        user = None
-        return redirect('sih:profile_edit')
+        person = None
     
     vacancie=v
     return render(request,'sih/dashboard.html',{'num_of_applied':len(applied),'applied':applied,'num_of_vacancies':len(vacancie),'vacancies':vacancie,'department':department,'locations':locations,'message':message, 'person':person})
 
 @login_required
 def dept_admin(request):
-    userProfile = UserProfile.objects.get(user=request.user)
+    userProfile = UserProfile.objects.filter(user=request.user).count()
+    if userProfile == 0:
+        return redirect('sih:profile_edit')
     deptProfile = DeptProfile.objects.get(user=request.user)
     vac = vacancy.objects.filter(dept_id=deptProfile.id).order_by('-end_date')
-    return render(request, 'sih/dept_admin.html', {'userProfile':userProfile, 'deptProfile':deptProfile, 'vacancy':vac})
+    application = []
+
+    for v in vac:
+        apps = applications.objects.filter(dept=v)
+        for a in apps:
+            application.append(a)
+    
+    if application == []:
+        application = None
+
+    # application = applications.objects.filter(dept.dept_id=deptProfile)
+    return render(request, 'sih/dept_admin.html', {'userProfile':userProfile, 'deptProfile':deptProfile, 'vacancy':vac, 'applications':application})
 
 def change_status(request, jobID):
     print(jobID)
@@ -365,7 +383,7 @@ def change_status(request, jobID):
 def apply(request,job1):
     global message
     if request.user.is_authenticated:
-        if UserProfile.objects.filter(user=request.user).count!=0:
+        if UserProfile.objects.filter(user=request.user).count==0:
             return redirect('/profile/edit')
         profile = UserProfile.objects.get(user=request.user)
         if applications.objects.filter(dept=vacancy.objects.get(id=job1),user=request.user).count()!=0:
@@ -441,3 +459,27 @@ def apply(request,job1):
 
     else:
         return redirect('sih:signup')
+
+
+def view_profile(request, userID):
+    user = User.objects.get(id=userID)
+    person = UserProfile.objects.get(user = user)           
+    return render(request, 'sih/profile.html', { 'person':person})
+
+
+def filter(request):
+    if request.method == "POST":
+        print(request.POST.get('start_date'))
+        depart = request.POST.get('department')
+        loca = request.POST.get('location')
+        print(depart)
+        print(loca)
+        if depart:
+            dep_id = DeptProfile.objects.get(dept_name=depart)
+            v = vacancy.objects.filter(dept_id=dep_id)
+        elif loca:
+            v = vacancy.objects.filter(location=loca)
+
+    else:
+        print(request.method)
+        pass

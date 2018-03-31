@@ -129,15 +129,30 @@
               <div class="eachResult" style="border-bottom: 2px solid black;">
                 <table class="striped">
                   <tbody>
+                  {% if application is None %}
+                      No applications yet!!
+                  {% endif %}
+                  {% for application in applications %}
                     <tr>
+                      <td><p class="job">{{application.dept.title}}</p></td>
+                      <td></td>
+                      <td style="text-align: right;"><a href="#" class="waves-effect waves-light btn-small" id="accept">ACCEPT</a></td>
+                      <td><a href="#" class="waves-effect waves-light btn-small" id="decline">DECLINE</a></td>
+                    </tr>
+                    <tr>
+                      <td><p class="applied">Applied by : &nbsp;<b><a href="/view_profile/{{application.user.pk}}">{{application.user.username}}</a></b></p><td>
+                    </tr> 
+                  {% endfor %}
+
+                    <!-- <tr>
                       <td><p class="job">UI/UX DESIGN</p></td>
                       <td></td>
                       <td style="text-align: right;"><a href="#" class="waves-effect waves-light btn-small" id="accept">ACCEPT</a></td>
                       <td><a href="#" class="waves-effect waves-light btn-small" id="decline">DECLINE</a></td>
                     </tr>
                     <tr>
-                      <td><p class="applied">Applied by : &nbsp;<b><a href="#">Pradeep</a></b></p><td>
-                    </tr>
+                      <td><p class="applied">Applied by : &nbsp;<b><a href="/view_profile/">Pradeep</a></b></p><td>
+                    </tr> -->
                   </tbody>
                 </table>
                 <br>
@@ -167,9 +182,12 @@
                     <label for="description">Description</label>
                   </div>
                 </div>
-                <div class="input-field col s6">
-                    <input id="location" type="text" class="validate" name="location">
-                    <label for="location">Location</label>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="description" class="materialize-textarea" name="location"></textarea>
+                        <!-- <input id="location" type="text" class="validate" name="location"> -->
+                        <label for="location">Location</label>
+                    </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
