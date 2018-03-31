@@ -24,23 +24,12 @@
       <nav id="navLogo">
         <div class="nav-wrapper">
           <ul class="right hide-on-med-and-down">
-            <li><img src="/media/{{userProfile.profilepicture}}/" width="45" height="45" id="dp"></li>
+            <li><img src="../../../media/{{userProfile.profilepicture}}" width="45" height="45" id="dp"></li>
             <li><a class="dropdown-trigger" href="{% url 'sih:profile' %}" data-target="dropdown1" id="username">{{user.username}}<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
       </nav>
-      <div class="container" id="content">
-          <nav id="searchArea">
-            <div class="nav-wrapper">
-              <form>
-                <div class="input-field">
-                  <input id="search" type="search" required placeholder="Search for jobs added by you...">
-                  <label class="label-icon" for="search"><i class="material-icons" id="glassb">search</i></label>
-                  <i class="material-icons" id="closeb">close</i>
-                </div>
-              </form>
-            </div>
-          </nav>
+      <!-- <div class="container" id="content">
           <br>
           <div class="eachResult" style="border-bottom: 2px solid black;">
             <table class="striped">
@@ -80,7 +69,82 @@
           <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal tooltipped" id="addBut" data-position="left" data-tooltip="Add a new job position" style="position: fixed;margin-bottom: 5em;">
             <i class="material-icons" id="add">add</i>
           </a>
-      </div>
+      </div> -->
+
+      <div id="admin_content" class="container">
+        <div class="row" style="padding-top: 3em;">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#test1"><i class="fas fa-briefcase" style="width: 16px; height: 16px;color: black;"></i>&nbsp;&nbsp;JOBS OPENED<sup class="notif">&nbsp;3&nbsp;</sup></a></li>
+                <li class="tab col s3"><a href="#test2"><i class="fas fa-check" style="width: 16px; height: 16px;color: black;"></i>&nbsp;&nbsp;APPLICATIONS<sup class="notif">&nbsp;4&nbsp;</sup></a></li>
+                <!-- <li class="tab col s3"><a href="#test3"><i class="fas fa-bell" style="width: 16px; height: 16px;color: black;"></i>&nbsp;&nbspNOTIFICATIONS<sup class="notif">&nbsp;5&nbsp;</sup></a></li> -->
+              </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div id="test1" class="col s12">
+              <div id="content">
+                  <br>
+                  {% for job in vacancy %}
+                  <div class="eachResult" style="border-bottom: 2px solid black;">
+                    <table class="striped">
+                      <tbody>
+                        <tr>
+                          <td><p class="job">{{job.title}}</p><td>
+                          <td></td>
+                            {% if job.results_out is  False %}
+                          <td><a href="#" class="waves-effect waves-light btn-small" id="closeB">CLOSE</a></td>
+                            {% else %}
+                          <td><a href="#" class="waves-effect waves-light btn-small" id="openB">OPEN</a></td>
+                          {% endif %}
+                        </tr>
+                        <tr>
+                          <!-- <td></td> -->
+
+                          <td style="font-size: 13px;">
+                            {% if job.results_out is  False %}
+                            <i class="material-icons" id="check">check</i>
+                            {% else %}
+                            <i class="material-icons" id="close">close</i>
+                            {% endif %}
+                            {% if job.results_out is True%}
+                              &nbsp;Un-Active this week
+                            {%else%}
+                              &nbsp;Active this week{%endif%}</td>
+                          <td></td>
+                          <td style="font-size: 13px;"><i class="material-icons" id="account">account_circle</i>&nbsp;<b>{{job.num_applicants}}</b>&nbsp;Applicants last week</td>
+                          <td style="font-size: 13px;"><i class="material-icons" id="location">location_on</i>&nbsp;{{job.location}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br>
+                  </div>
+                  {% endfor %}
+                  <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal tooltipped" id="addBut" data-position="left" data-tooltip="Add a new job position" style="position: fixed;margin-bottom: 5em;">
+                    <i class="material-icons" id="add">add</i>
+                  </a>
+              </div>
+            </div>
+            <div id="test2" class="col s12">
+              <div class="eachResult" style="border-bottom: 2px solid black;">
+                <table class="striped">
+                  <tbody>
+                    <tr>
+                      <td><p class="job">UI/UX DESIGN</p></td>
+                      <td></td>
+                      <td style="text-align: right;"><a href="#" class="waves-effect waves-light btn-small" id="accept">ACCEPT</a></td>
+                      <td><a href="#" class="waves-effect waves-light btn-small" id="decline">DECLINE</a></td>
+                    </tr>
+                    <tr>
+                      <td><p class="applied">Applied by : &nbsp;<b><a href="#">Pradeep</a></b></p><td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
       <div class="container" id="addForm">
           <h4 style="text-align: center;">Add a job position</h4>
           <br>

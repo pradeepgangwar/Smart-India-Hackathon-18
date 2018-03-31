@@ -12,6 +12,9 @@
     <div class="container-fluid" id="first">
       <nav id="navTopfirst">
         <div class="nav-wrapper">
+          <a href="#" class="brand-logo" style="position: relative;">
+              <img src="../../static/img/logo2.png" width="120" height="120" style="padding-bottom: 1.5em;margin-left: 1.4em;">
+          </a>
           <ul class="right hide-on-med-and-down">
             <li><a href="#">ABOUT US</a></li>
           </ul>
@@ -34,7 +37,7 @@
     </div>
     <div class="container-fluid" id="second">
 
-      
+
       <nav id="navTop">
           <div class="nav-wrapper">
               <img src="../../static/img/logo.svg" width="120" height="120">
@@ -75,7 +78,7 @@
           </div>
         </nav>
 
-        <h5 style="font-size: 14px;">found <b>{{vacancy_result.count}}</b> results</h5>
+        <h5 style="font-size: 14px;"><b>{{vacancy_result.count}}</b> new job openings recently added !</h5>
         <hr style="opacity: 0.5;" />
         <div id="first5">
         {% if vacancy_result.count <= 5 %}
@@ -103,7 +106,7 @@
         </div>
           {% if vacancy_result.count > 5 %}
 
-            <a class="waves-effect waves-light btn-small" id="more">More...</a>
+            <a class="waves-effect waves-light btn-small" id="more">VIEW ALL</a>
 
           {%endif%}
           <div id="all">

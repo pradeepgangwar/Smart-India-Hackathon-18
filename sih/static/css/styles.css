@@ -12,7 +12,6 @@ main {
    flex: 1 0 auto;
 }
 
-
 .btn {
   border-radius: 30px;
   background-color: #bb034d;
@@ -45,7 +44,16 @@ main {
   opacity: 0.6;
 }
 
-#signup, #login, #adds, #back {
+#signup, #login, #adds, #back, #filterB, #accept, #decline, #openB, #closeB, #more {
+  border-radius: 30px;
+  width: 100px;
+  background-color: #f3efef;
+  opacity: 1;
+  color: #a00037;
+  font-weight: 700;
+}
+
+#apply {
   border-radius: 30px;
   width: 100px;
   background-color: #f3efef;
@@ -137,7 +145,6 @@ footer {
   height: 680px;
   font-family: 'Montserrat', sans-serif;
   opacity: 0.85;
-  width: 100%;
 }
 
 #first {
@@ -189,8 +196,23 @@ footer {
   line-height: 20px;
   font-weight: 700;
   text-transform: uppercase;
-  width: 180px;
 }
+
+.eachResult .applied {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.eachResult .start_date {
+  font-size: 13px;
+}
+
+.eachResult td {
+  width: 100px;
+}
+
 
 #add:hover {
   background-color: #f3efef;
@@ -209,5 +231,36 @@ footer {
 }
 
 #addForm {
-  padding-top: 5em;
+  padding-top: 2em;
+}
+
+#titlesec {
+  font-size: 10px;
+  font-weight: 700;
+  color: #a00037;
+}
+
+#descp {
+  font-size: 13px;
+  color: black;
+  font-weight: 700;
+}
+
+.notif {
+  color: #f3efef;
+  border-radius: 5px;
+  font-size: 10.5px;
+  padding: 2px;
+  margin-left: 3px;
+  margin-bottom: 2px;
+  font-weight: 700;
+  background-color: black;
+}
+
+#about {
+  font-size: 25px;
+}
+
+#about li {
+  font-size: 18px;
 }
