@@ -34,7 +34,7 @@
 
           <div class="nav-wrapper col s4">
             <ul class="right hide-on-med-and-down">
-              <li><img src="../../static/img/dp.jpg" width="45" height="45" id="dp"></li>
+              <li><img src="../../media/{{person.profilepicture}}" width="45" height="45" id="dp"></li>
               <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">{{request.user.first_name}}<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
           </div>
@@ -110,7 +110,7 @@
                   <table class="striped">
                     <tbody>
                       <tr>
-                        <td><p class="dept">{{job.title}}</p></td>
+                        <td><a href="/vacancy/{{job.id}}/"><p class="dept">{{job.title}}</p></a></td>
                         
                         <td><a href="{% url 'sih:apply' job.id %}" class="waves-effect waves-light btn-small" id="apply" style="float:right;">APPLY</a></td>
                       </tr>

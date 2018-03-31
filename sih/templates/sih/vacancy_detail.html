@@ -18,16 +18,25 @@
       </ul>
       <nav id="navTop">
         <div class="nav-wrapper">
-          <img src="../../static/img/logo.svg" width="120" height="120">
+          <img src="../../static/img/logo2.png" width="120" height="120">
           <ul class="right hide-on-med-and-down">
           </ul>
         </div>
       </nav>
       <nav id="navLogo">
+          <div class="nav-wrapper">
+            <ul class="right hide-on-med-and-down">
+              <li><a class="waves-effect waves-light btn-small" id="signup" href="/">Home</a></li>
+            </ul>
+          </div>
+        </nav>
+      <nav id="navLogo">
         <div class="nav-wrapper">
           <ul class="right hide-on-med-and-down">
-            <li><img src="/media/{{userProfile.profilepicture}}" width="45" height="45" id="dp"></li>
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">{{user.username}}<i class="material-icons right">arrow_drop_down</i></a></li>
+            {% if user.is_authenticated %}
+              <li><img src="/media/{{userProfile.profilepicture}}" width="45" height="45" id="dp"></li>
+              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">{{user.username}}<i class="material-icons right">arrow_drop_down</i></a></li>
+            {% endif %}
           </ul>
         </div>
       </nav>

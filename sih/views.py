@@ -77,6 +77,8 @@ def logout(request):
 
 def index(request):
     # user_id = request.user
+    if request.user.is_authenticated:
+        return redirect('/dashboard')
     request.session['username'] = request.user.username
     dept_result = None
     vacancy_result  = None
@@ -284,8 +286,11 @@ def vacancy_detail(request, pk):
     vacancy_details = vacancy.objects.get(pk=pk)
     # print(vacancy_details.dept_id.id)
     dept_result = DeptProfile.objects.get(id=vacancy_details.dept_id.id)
-    userProfile = UserProfile.objects.get(user=request.user)
-    return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy_details, 'refer': refer, 'dept': dept_result, 'userProfile':userProfile})
+    if request.user.is_authenticated:
+        userProfile = UserProfile.objects.get(user=request.user)
+        return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy_details, 'refer': refer, 'dept': dept_result, 'userProfile':userProfile})
+    else:
+        return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy_details, 'refer': refer, 'dept': dept_result})        
 
 def query(request):
     if request.user.is_authenticated:
@@ -325,8 +330,16 @@ def dashboard(request):
     else:
         pass
 
+    try:
+
+        person = UserProfile.objects.get(user = request.user)
+            
+    except UserProfile.DoesNotExist:
+        user = None
+        return redirect('sih:profile_edit')
+    
     vacancie=v
-    return render(request,'sih/dashboard.html',{'num_of_applied':len(applied),'applied':applied,'num_of_vacancies':len(vacancie),'vacancies':vacancie,'department':department,'locations':locations,'message':message})
+    return render(request,'sih/dashboard.html',{'num_of_applied':len(applied),'applied':applied,'num_of_vacancies':len(vacancie),'vacancies':vacancie,'department':department,'locations':locations,'message':message, 'person':person})
 
 @login_required
 def dept_admin(request):
@@ -352,6 +365,8 @@ def change_status(request, jobID):
 def apply(request,job1):
     global message
     if request.user.is_authenticated:
+        if UserProfile.objects.filter(user=request.user).count!=0:
+            return redirect('/profile/edit')
         profile = UserProfile.objects.get(user=request.user)
         if applications.objects.filter(dept=vacancy.objects.get(id=job1),user=request.user).count()!=0:
             message="already applied for this job"

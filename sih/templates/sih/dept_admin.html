@@ -3,7 +3,7 @@
     <title>Dashboard</title>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link href="./css/styles.css" rel="stylesheet">
+      <link href="../../static/css/styles.css" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
@@ -93,9 +93,9 @@
                           <td><p class="job">{{job.title}}</p><td>
                           <td></td>
                             {% if job.results_out is  False %}
-                          <td><a href="#" class="waves-effect waves-light btn-small" id="closeB">CLOSE</a></td>
+                          <td><a href="/change_status/{{job.id}}" class="waves-effect waves-light btn-small" id="closeB">CLOSE</a></td>
                             {% else %}
-                          <td><a href="#" class="waves-effect waves-light btn-small" id="openB">OPEN</a></td>
+                          <td><a href="/change_status/{{job.id}}" class="waves-effect waves-light btn-small" id="openB">REOPEN</a></td>
                           {% endif %}
                         </tr>
                         <tr>
@@ -209,6 +209,7 @@
           $('.datepicker').datepicker();
           $('.tooltipped').tooltip();
           $("#addForm").hide();
+          $('.tabs').tabs();
           $("#addBut").click(function() {
             $("#addForm").fadeIn(500);
             $("#content").hide();
