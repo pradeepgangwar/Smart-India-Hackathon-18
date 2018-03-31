@@ -34,6 +34,8 @@
       <div class="row">
        <div class="col s2 m2 l2">
          <div id="filter">
+          <form method="POST" action="" class="register-form" encrypt="multipart/form-data">
+            {% csrf_token %}
            <div class="row" style="padding-top: 3em;">
              <div class="col s12">
                <h4 style="font-size: 20px;"><i class="fas fa-filter"></i>&nbsp;&nbsp;FILTER</h4>
@@ -42,22 +44,23 @@
            </div>
            <div class="row">
              <div class="input-field col s12">
-                <select>
-                  <option value="" disabled selected>Choose Department</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+              <select class="form-control" id="department" placeholder="Department" name="department">
+                          <option value="" disabled selected>Choose Department</option>
+                          {% for value in department %}
+                              <option value={{value}}>{{ value }}</option>
+                          {% endfor %}
                 </select>
+               
                 <label>CATEGORY</label>
             </div>
            </div>
            <div class="row">
              <div class="input-field col s12">
-                <select>
-                  <option value="" disabled selected>Work location</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+                <select class="form-control" id="location" placeholder="Location" name="location">
+                          <option value="" disabled selected>Work Location</option>
+                          {% for value in locations %}
+                              <option value={{value}}>{{ value }}</option>
+                          {% endfor %}
                 </select>
                 <label>LOCATION</label>
             </div>
@@ -70,9 +73,10 @@
            </div>
            <div class="row">
              <div class="input-field col s12" style="text-align: center;">
-                <a class="waves-effect waves-light btn-small" id="filterB">FILTER</a>
+                <input type="submit" class="waves-effect waves-light btn-small" value="Filter">
              </div>
            </div>
+         </form>
          </div>
        </div>
        <div class="col l10 m10 s10">
@@ -262,7 +266,7 @@
                     </tbody>
                   </table>
                   <br>
-                </div>
+                </div>-->
               </div>
               <div id="test3" class="col s12">
                 <br>

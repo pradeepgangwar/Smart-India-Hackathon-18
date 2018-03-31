@@ -21,6 +21,7 @@ from django.utils import timezone
 import os
 
 # Create your views here.
+message = None
 def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST)
@@ -246,12 +247,6 @@ def query(request):
     else:
         return redirect('sih:signup')
 
-def applications(request):
-    if request.user.is_authenticated:
-        pass
-
-    else:
-        return redirect('sih:signup')
 
 def dashboard(request):
     global message
@@ -272,7 +267,14 @@ def dashboard(request):
             locations.append(vac.location)
 
     if request.method=="POST":
-        pass
+        depart = request.POST.get('department')
+        loca = request.POST.get('location')
+        if depart:
+            dep_id = DeptProfile.objects.get(dept_name=depart)
+            v = vacancy.objects.filter(dept_id=dep_id)
+        elif loca:
+            v = vacancy.objects.filter(location=loca)
+
     else:
         pass
 
