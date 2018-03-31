@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title>Job Description</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link href="./css/styles.css" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container-fluid" id="second">
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!">Settings</a></li>
+        <li><a href="#!">Profile</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">Logout</a></li>
+      </ul>
+      <nav id="navTop">
+        <div class="nav-wrapper">
+          <ul class="right hide-on-med-and-down">
+          </ul>
+        </div>
+      </nav>
+      <nav id="navLogo">
+        <div class="nav-wrapper">
+          <ul class="right hide-on-med-and-down">
+            <li><img src="./img/dp.jpg" width="45" height="45" id="dp"></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">Gagan<i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="eachResult" style="border-bottom: 2px solid black;padding-top: 3em;">
+          <h4>UI/UX Design in Dept. of Design - Mumbai</h4>
+          <table class="striped">
+            <tbody>
+              <tr>
+                <td><p class="dept" style="color: #a00037;">DEPT. OF DESIGN</p></td>
+                <td></td>
+                <td></td>
+                <!-- <td><a href="#" class="waves-effect waves-light btn-small" id="apply">APPLY</a></td> -->
+              </tr>
+              <tr>
+                <td><p class="job">UI/UX Design</p><td>
+              </tr>
+              <tr>
+                <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">29<sup>th</sup>April'18</p></td>
+                <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
+                    <td style="font-size: 13px;"><span id="titlesec">POSTED ON</span><p id="descp">30<sup>th</sup>March'18</p></td>
+                <td style="font-size: 13px;"><span id="titlesec">APPLY BY</span><p id="descp">31<sup>st</sup>May'18</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+        </div>
+        <h5 style="text-transform: uppercase;font-size: 22px;font-weight: 600;">About the job :</h5>
+        <div id="about">
+          <p>Number of vacancies available : <b>5</b></p>
+          <p>Skill(s) required : <b>Data Analytics</b></p>
+          <h4 style="font-size: 22px;font-weight: 600;">WHO CAN APPLY ?</h4>
+            <p>Only those candidates can apply who:</p>
+            <ol>
+              <li>are available for full time (in-office) job</li>
+              <li>can start the internship between <b>29th Apr'18</b> and <b>31st May'18</b></li>
+              <li>have relevant skills and interests</li>
+            </ol>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $(".dropdown-trigger").dropdown();
+          $('.sidenav').sidenav();
+          $('.tabs').tabs();
+          $('select').formSelect();
+          $('.datepicker').datepicker();
+      });
+    </script>
+  </body>
+</html>
