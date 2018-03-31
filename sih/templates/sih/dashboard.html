@@ -83,7 +83,7 @@
            </div>
            <div class="row">
              <div class="input-field col s12" style="text-align: center;">
-                <input type="submit" class="waves-effect waves-light btn-small" value="Filter">
+                <input type="submit" style="display: none;"><a href="" class="waves-effect waves-light btn-small" id="filterB">FILTER</a>
              </div>
            </div>
          </form>
@@ -111,8 +111,7 @@
                     <tbody>
                       <tr>
                         <td><p class="dept">{{job.title}}</p></td>
-                        <td></td>
-                        <td></td>
+                        
                         <td><a href="{% url 'sih:apply' job.id %}" class="waves-effect waves-light btn-small" id="apply" style="float:right;">APPLY</a></td>
                       </tr>
                     </tbody>
