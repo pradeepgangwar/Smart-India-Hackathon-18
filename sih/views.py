@@ -233,15 +233,11 @@ def dept_admin(request):
 
 def vacancy_detail(request, pk):
     refer = request.META.get('HTTP_REFERER')
-    vacancy_detail = get_object_or_404(vacancy, pk=pk)
-    dept_result = DeptProfile.objects.get(id=vacancy_detail.id)
-    print(dept_result)
-    if vacancy_detail.end_date < timezone.now():
-        messages.warning(request, 'This vacancy is expired')
-        return redirect('/')
-    else:
-        return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy_detail, 'refer': refer, 'dept': dept_result})
-    return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy_detail, 'refer': refer, 'dept': dept_result})
+    vacancy_details = vacancy.objects.get(pk=pk)
+    # print(vacancy_details.dept_id.id)
+    dept_result = DeptProfile.objects.get(id=vacancy_details.dept_id.id)
+    userProfile = UserProfile.objects.get(id=request.user.id)
+    return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy_details, 'refer': refer, 'dept': dept_result, 'userProfile':userProfile})
 
 def query(request):
     if request.user.is_authenticated:

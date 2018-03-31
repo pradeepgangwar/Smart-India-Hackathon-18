@@ -31,10 +31,10 @@
             <div class="nav-wrapper">
                 <ul class="right hide-on-med-and-down">
                     <li>
-                        <img src="../../static/img/dp.jpg" width="45" height="45" id="dp">
+                        <img src="/media/{{person.profilepicture}}" width="45" height="45" id="dp">
                     </li>
                     <li>
-                        <a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">Profile
+                        <a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">{{user.username}}
                             <i class="material-icons right">arrow_drop_down</i>
                         </a>
                     </li>
@@ -44,10 +44,12 @@
         <div class="container" id="content">
             <div class="row">
                 <div class="s12" style="text-align:center; margin-top:5em;">
-                    <img class="responsive-img" width="95" height="95" src="../../static/img/dp.jpg">
+                    <img class="responsive-img" width="95" height="95" src="/media/{{person.profilepicture}}">
                 </div>
                 <div class="s12" style="text-align:center; margin-top:5em;">
-                    <i class="fas fa-edit" style="color:#a00037;"></i> <span style="margin-left:1rem; color:#a00037;"> Edit Your Profile</span>
+                    <a href="/profile/edit/">
+                        <i class="fas fa-edit" style="color:#a00037;"></i> <span style="margin-left:1rem; color:#a00037;"> Edit Your Profile</span>
+                    </a>
                 </div>
             </div>
             <table class="centered responsive-table" style="margin-top:5em;">

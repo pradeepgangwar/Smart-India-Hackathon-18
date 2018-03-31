@@ -12,9 +12,9 @@
     <div class="container-fluid" id="second">
       <ul id="dropdown1" class="dropdown-content">
         <li><a href="#!">Settings</a></li>
-        <li><a href="#!">Profile</a></li>
+        <li><a href="{% url 'sih:profile' %}">Profile</a></li>
         <li class="divider"></li>
-        <li><a href="#!">Logout</a></li>
+        <li><a href="/accounts/logout/">Logout</a></li>
       </ul>
       <nav id="navTop">
         <div class="nav-wrapper">
@@ -26,8 +26,8 @@
       <nav id="navLogo">
         <div class="nav-wrapper">
           <ul class="right hide-on-med-and-down">
-            <li><img src="../../static/img/dp.jpg" width="45" height="45" id="dp"></li>
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">Gagan<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><img src="/media/{{userProfile.profilepicture}}" width="45" height="45" id="dp"></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">{{user.username}}<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
       </nav>
