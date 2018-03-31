@@ -29,6 +29,13 @@
         </nav>
         <nav id="navLogo">
             <div class="nav-wrapper">
+                <ul class="right">
+              <li><a href="/dashboard/" class="waves-effect waves-light btn-small" style="width:100%;margin-left: -5px;" id="login">Dashboard</a></li>
+              <li><a href="/profile/" class="waves-effect waves-light btn-small" id="login">Profile</a></li>
+              <li><a href="/accounts/logout/" class="waves-effect waves-light btn-small" id="login">Logout</a></li>
+            </ul>
+
+              <!--<li><a href="http://localhost:8000/accounts/login/" class="waves-effect waves-light btn-small" id="login">Login</a></li>-->
                 <ul class="right hide-on-med-and-down">
                     <li>
                         <img src="/media/{{person.profilepicture}}" width="45" height="45" id="dp">
@@ -40,6 +47,7 @@
                     </li>
                 </ul>
             </div>
+          
         </nav>
         <div class="container" id="content">
             <div class="row">

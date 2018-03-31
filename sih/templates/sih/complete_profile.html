@@ -3,26 +3,52 @@
 <head>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<link rel="stylesheet" type="text/css" href="../../static/css/styles.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>Profile</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+	<title>Complete Profile</title>
 </head>
 <body>
 	<div class="container-fluid" id="second">
-	  <nav id="navTop">
-        <div class="nav-wrapper">
-					<img src="../../static/img/logo.svg" width="120" height="120">
-          <ul class="right hide-on-med-and-down">
-          </ul>
-        </div>
-      </nav>
-      <nav id="navLogo">
-        <div class="nav-wrapper">
-          <ul class="right hide-on-med-and-down">
-            <li><a class="waves-effect waves-light btn-small" id="signup">Signup</a></li>
-          </ul>
-        </div>
-      </nav>
+	  <ul id="dropdown1" class="dropdown-content">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="/accounts/logout">Logout</a>
+            </li>
+        </ul>
+        <nav id="navTop">
+            <div class="nav-wrapper">
+                <img src="../../static/img/logo.svg" width="120" height="120">
+                <ul class="right hide-on-med-and-down"></ul>
+            </div>
+        </nav>
+        <nav id="navLogo">
+            <div class="nav-wrapper">
+                <ul class="right">
+              <li><a href="/dashboard/" class="waves-effect waves-light btn-small" style="width:100%;margin-left: -5px;" id="login">Dashboard</a></li>
+              <li><a href="/profile/" class="waves-effect waves-light btn-small" id="login">Profile</a></li>
+              <li><a href="/accounts/logout/" class="waves-effect waves-light btn-small" id="login">Logout</a></li>
+            </ul>
+
+              <ul class="right hide-on-med-and-down">
+                    <li>
+                        <img src="/media/{{person.profilepicture}}" width="45" height="45" id="dp">
+                    </li>
+                    <li>
+                        <a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">{{user.username}}
+                            <i class="material-icons right"></i>
+                        </a>
+                    </li>
+                </ul>
+                
+            </div>
+          
+        </nav>
     </div>
     <form method="post" action="{% url 'sih:profile_edit' %}" class="register-form" enctype="multipart/form-data">
         {% csrf_token %}
@@ -202,6 +228,8 @@
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
     $('select').formSelect();
