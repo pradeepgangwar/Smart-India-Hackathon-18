@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from reportlab.pdfgen import canvas
 
 import os
 
@@ -97,21 +98,18 @@ def index(request):
 def profile(request):
     if request.user.is_authenticated:
         try:
+
             person = UserProfile.objects.get(user = request.user)
+            
         except UserProfile.DoesNotExist:
             user = None
-            return render(request, 'sih/profile.html')            
+            return redirect('sih:profile_edit')            
         return render(request, 'sih/profile.html', { 'person':person})
     else:
         return redirect("/")
 
 def profile_edit(request):
     form = None
-    request.session['username'] = request.user.username
-    user = User.objects.filter(username=request.user.username)
-    print(user)
-    userProfile = UserProfile.objects.get(user=request.user)
-    print(userProfile)
 
     Elementry = 'Elementry'
     HighSchool =  'High School'
@@ -152,42 +150,92 @@ def profile_edit(request):
     )
 
     if request.user.is_authenticated:
-        if request.method=="POST":
-            form = UserProfileForm(request.POST)
-            if form.is_valid():
-                print (1)
-                age = form.cleaned_data['age']
-                gender = request.POST.get('gender')
-                category = request.POST.get('category')
-                qualification = request.POST.get('qualification')
-                resume = request.FILES['resume']
-                profilepicture = request.FILES['profilepicture']
-                fs = FileSystemStorage()
-                filename_resume = fs.save(resume.name, resume)
-                uploaded_resume_url = fs.url(filename_resume)
+        request.session['username'] = request.user.username
+        user = User.objects.filter(username=request.user.username)
+        print(user)
+        if UserProfile.objects.filter(user=request.user).count()==0:
+        #userProfile = UserProfile.objects.get(user=request.user)
+        #print(userProfile)  
+            if request.method=="POST":
+                form = UserProfileForm(request.POST)
+                if form.is_valid():
+                    print (1)
+                    age = form.cleaned_data['age']
+                    gender = request.POST.get('gender')
+                    category = request.POST.get('category')
+                    qualification = request.POST.get('qualification')
+                    resume = request.FILES['resume']
+                    profilepicture = request.FILES['profilepicture']
+                    fs = FileSystemStorage()
+                    filename_resume = fs.save(resume.name, resume)
+                    uploaded_resume_url = fs.url(filename_resume)
 
-                filename_profilepicture = fs.save(profilepicture.name, profilepicture)
-                uploaded_profilepicture_url = fs.url(filename_profilepicture)
-                is_subscribed = False
-                if request.POST.get('is_subscribed')=="True":
-                    is_subscribed = True
-                user = User.objects.get(username=request.user.username)
+                    filename_profilepicture = fs.save(profilepicture.name, profilepicture)
+                    uploaded_profilepicture_url = fs.url(filename_profilepicture)
+                    is_subscribed = False
+                    if request.POST.get('is_subscribed')=="True":
+                        is_subscribed = True
+                    user = User.objects.get(username=request.user.username)
 
-                Profile = UserProfile.objects.create(user=user,age=age,gender=gender,category=category,resume=resume,profilepicture=profilepicture,is_subscribed=is_subscribed,qualification=qualification)
-                Profile.save()
+                    Profile = UserProfile.objects.create(user=user,age=age,gender=gender,category=category,resume=resume,profilepicture=profilepicture,is_subscribed=is_subscribed,qualification=qualification)
+                    Profile.save()
 
-                return render(request, 'sih/complete_profile.html', {
-                    'uploaded_resume_url': uploaded_resume_url,
-                    'uploaded_profilepicture_url': uploaded_profilepicture_url,
-                    'qualifications_choices':QUALIFICATIONS,
-                    'gender_choices':GENDER,
-                    'category_choices':CATEGORY
-                })
+                    return render(request, 'sih/complete_profile.html', {
+                        'uploaded_resume_url': uploaded_resume_url,
+                        'uploaded_profilepicture_url': uploaded_profilepicture_url,
+                        'qualifications_choices':QUALIFICATIONS,
+                        'gender_choices':GENDER,
+                        'category_choices':CATEGORY
+                    })
+
+            else:
+                form = UserProfileForm()
+
+            return render(request, 'sih/complete_profile.html', {'form': form, 'status':'logged_in','qualifications_choices':QUALIFICATIONS,'gender_choices':GENDER,'category_choices':CATEGORY})
 
         else:
-            form = UserProfileForm()
+            if request.method=="POST":
+                form = UserProfileForm(request.POST)
+                if form.is_valid():
+                    print (1)
+                    age = form.cleaned_data['age']
+                    gender = request.POST.get('gender')
+                    category = request.POST.get('category')
+                    qualification = request.POST.get('qualification')
+                    resume = request.FILES['resume']
+                    profilepicture = request.FILES['profilepicture']
+                    fs = FileSystemStorage()
+                    filename_resume = fs.save(resume.name, resume)
+                    uploaded_resume_url = fs.url(filename_resume)
 
-        return render(request, 'sih/complete_profile.html', {'form': form, 'status':'logged_in','qualifications_choices':QUALIFICATIONS,'gender_choices':GENDER,'category_choices':CATEGORY})
+                    filename_profilepicture = fs.save(profilepicture.name, profilepicture)
+                    uploaded_profilepicture_url = fs.url(filename_profilepicture)
+                    is_subscribed = False
+                    if request.POST.get('is_subscribed')=="True":
+                        is_subscribed = True
+                    userpro = UserProfile.objects.get(user=request.user)
+                    userpro.age=age
+                    userpro.gender=gender
+                    userpro.category=category
+                    userpro.resume=resume
+                    userpro.profilepicture=profilepicture
+                    userpro.is_subscribed=is_subscribed
+                    userpro.qualification=qualification
+                    userpro.save()
+
+                    '''return render(request, 'sih/complete_profile.html', {
+                        'uploaded_resume_url': uploaded_resume_url,
+                        'uploaded_profilepicture_url': uploaded_profilepicture_url,
+                        'qualifications_choices':QUALIFICATIONS,
+                        'gender_choices':GENDER,
+                        'category_choices':CATEGORY
+                    })'''
+
+            else:
+                form = UserProfileForm()
+
+            return render(request, 'sih/complete_profile.html', {'form': form, 'status':'logged_in','qualifications_choices':QUALIFICATIONS,'gender_choices':GENDER,'category_choices':CATEGORY})
+
 
     else:
         return redirect('sih:signup')
@@ -236,7 +284,7 @@ def vacancy_detail(request, pk):
     vacancy_details = vacancy.objects.get(pk=pk)
     # print(vacancy_details.dept_id.id)
     dept_result = DeptProfile.objects.get(id=vacancy_details.dept_id.id)
-    userProfile = UserProfile.objects.get(id=request.user.id)
+    userProfile = UserProfile.objects.get(user=request.user)
     return render(request, 'sih/vacancy_detail.html', {'vacancy': vacancy_details, 'refer': refer, 'dept': dept_result, 'userProfile':userProfile})
 
 def query(request):
