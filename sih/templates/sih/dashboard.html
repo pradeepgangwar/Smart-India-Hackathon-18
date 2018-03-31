@@ -11,7 +11,7 @@
   <body>
     <div class="container-fluid" id="second">
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Settings</a></li>
+        <li><a href="dashboard">Dashboard</a></li>
         <li><a href="{% url 'sih:profile' %}">Profile</a></li>
         <li class="divider"></li>
         <li><a href="/accounts/logout">Logout</a></li>
@@ -23,16 +23,26 @@
         </div>
       </nav>
       <nav id="navLogo">
-        <div class="nav-wrapper">
-          <ul class="right hide-on-med-and-down">
-            <li><img src="../../static/img/dp.jpg" width="45" height="45" id="dp"></li>
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">{{request.user.first_name}}<i class="material-icons right">arrow_drop_down</i></a></li>
-          </ul>
+        <div class="row">
+          <div class="col s4">
+              <img src="../../static/img/logo2.png" width="95" height="45" style="margin-top:1em;">
+          </div>
+
+          <div class="col s4" style="text-align:center;">
+              <img src="../../static/img/assam.png" width="45" height="45" style="margin-top:1em;">
+          </div>
+
+          <div class="nav-wrapper col s4">
+            <ul class="right hide-on-med-and-down">
+              <li><img src="../../static/img/dp.jpg" width="45" height="45" id="dp"></li>
+              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">{{request.user.first_name}}<i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+          </div>
         </div>
       </nav>
       <div class="container-fluid">
       <div class="row">
-       <div class="col s2 m2 l2">
+       <div class="col s2 m2 l2" style="margin-top: 2em;">
          <div id="filter">
           <form method="POST" action="" class="register-form" encrypt="multipart/form-data">
             {% csrf_token %}
@@ -81,7 +91,7 @@
        </div>
        <div class="col l10 m10 s10">
         <div id="content">
-          <div class="row" style="padding-top: 3em;">
+          <div class="row" style="margin-top: 5em; margin-left:1em;">
               <div class="col s12">
                 <ul class="tabs">
                   <li class="tab col s3"><a class="active" href="#test1"><i class="fas fa-briefcase" style="width: 16px; height: 16px;color: black;"></i>&nbsp;&nbsp;JOBS<sup class="notif">&nbsp;{{num_of_vacancies}}&nbsp;</sup></a></li>
@@ -100,18 +110,22 @@
                   <table class="striped">
                     <tbody>
                       <tr>
-                        <td><p class="dept">{{job.dept_id.dept_name}}</p></td>
+                        <td><p class="dept">{{job.title}}</p></td>
                         <td></td>
                         <td></td>
-                        <td><a href="{% url 'sih:apply' job.id %}" class="waves-effect waves-light btn-small" id="apply">APPLY</a></td>
+                        <td><a href="{% url 'sih:apply' job.id %}" class="waves-effect waves-light btn-small" id="apply" style="float:right;">APPLY</a></td>
                       </tr>
+                    </tbody>
+                  </table>
+                  <table class="striped">
+                    <tbody>
                       <tr>
-                        <td><p class="job">{{job.title}}</p><td>
+                        <td><p class="job">{{job.dept_id.dept_name}}</p><td>
                       </tr>
                       <tr>
                         <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">{{job.start_date}}</p></td>
                         <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">{{job.location}}</p></td>
-                            <td style="font-size: 13px;"><span id="titlesec">POSTED ON</span><p id="descp">{{job.updated_on}}</p></td>
+                        <td style="font-size: 13px;"><span id="titlesec">POSTED ON</span><p id="descp">{{job.updated_on}}</p></td>
                         <td style="font-size: 13px;"><span id="titlesec">APPLY BY</span><p id="descp">{{job.end_date}}</p></td>
                       </tr>
                     </tbody>
