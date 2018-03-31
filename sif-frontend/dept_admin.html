@@ -29,83 +29,121 @@
           </ul>
         </div>
       </nav>
-      <div class="container" id="content">
-          <nav id="searchArea">
-            <div class="nav-wrapper">
-              <form>
-                <div class="input-field">
-                  <input id="search" type="search" required placeholder="Search for jobs added by you...">
-                  <label class="label-icon" for="search"><i class="material-icons" id="glassb">search</i></label>
-                  <i class="material-icons" id="closeb">close</i>
-                </div>
-              </form>
+      <div id="admin_content" class="container">
+        <div class="row" style="padding-top: 3em;">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#test1"><i class="fas fa-briefcase" style="width: 16px; height: 16px;color: black;"></i>&nbsp;&nbsp;JOBS OPENED<sup class="notif">&nbsp;3&nbsp;</sup></a></li>
+                <li class="tab col s3"><a href="#test2"><i class="fas fa-check" style="width: 16px; height: 16px;color: black;"></i>&nbsp;&nbsp;APPLICATIONS<sup class="notif">&nbsp;4&nbsp;</sup></a></li>
+                <!-- <li class="tab col s3"><a href="#test3"><i class="fas fa-bell" style="width: 16px; height: 16px;color: black;"></i>&nbsp;&nbspNOTIFICATIONS<sup class="notif">&nbsp;5&nbsp;</sup></a></li> -->
+              </ul>
             </div>
-          </nav>
-          <br>
-          <div class="eachResult" style="border-bottom: 2px solid black;">
-            <table class="striped">
-              <tbody>
-                <tr>
-                  <td><p class="job">UI/UX Design</p><td>
-                </tr>
-                <tr>
-                  <td style="font-size: 13px;"><i class="material-icons" id="check">check</i>&nbsp;Active this week</td>
-                  <td style="font-size: 13px;"><i class="material-icons" id="account">account_circle</i>&nbsp;<b>10</b>&nbsp;Applicants last week</td>
-                  <td style="font-size: 13px;"><i class="material-icons" id="location">location_on</i>&nbsp;Dispur</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
+        </div>
+        <div class="row">
+            <div id="test1" class="col s12">
+              <div id="content">
+                  <!-- <nav id="searchArea">
+                    <div class="nav-wrapper">
+                      <form>
+                        <div class="input-field">
+                          <input id="search" type="search" required placeholder="Search for jobs added by you...">
+                          <label class="label-icon" for="search"><i class="material-icons" id="glassb">search</i></label>
+                          <i class="material-icons" id="closeb">close</i>
+                        </div>
+                      </form>
+                    </div>
+                  </nav> -->
+                  <br>
+                  <div class="eachResult" style="border-bottom: 2px solid black;">
+                    <table class="striped">
+                      <tbody>
+                        <tr>
+                          <td><p class="job">UI/UX Design</p><td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td style="font-size: 13px;"><i class="material-icons" id="check">check</i>&nbsp;Active this week</td>
+                          <td style="font-size: 13px;"><i class="material-icons" id="account">account_circle</i>&nbsp;<b>10</b>&nbsp;Applicants last week</td>
+                          <td style="font-size: 13px;"><i class="material-icons" id="location">location_on</i>&nbsp;Dispur</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br>
+                  </div>
+                  <div class="eachResult" style="border-bottom: 2px solid black;">
+                    <table class="striped">
+                      <tbody>
+                        <tr>
+                          <td><p class="job">Product Design</p><td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td style="font-size: 13px;"><i class="material-icons" id="close">close</i>&nbsp;Un-active this week</td>
+                          <td style="font-size: 13px;"><i class="material-icons" id="account">account_circle</i>&nbsp;<b>12</b>&nbsp;Applicants last week</td>
+                          <td style="font-size: 13px;"><i class="material-icons" id="location">location_on</i>&nbsp;Dispur</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br>
+                  </div>
+
+                  <div class="eachResult" style="border-bottom: 2px solid black;">
+                    <table class="striped">
+                      <tbody>
+                        <tr>
+                          <td><p class="job">Computer tech</p><td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td style="font-size: 13px;"><i class="material-icons" id="check">check</i>&nbsp;Active this week</td>
+                          <td style="font-size: 13px;"><i class="material-icons" id="account">account_circle</i>&nbsp;<b>18</b>&nbsp;Applicants last week</td>
+                          <td style="font-size: 13px;"><i class="material-icons" id="location">location_on</i>&nbsp;Dispur</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br>
+                  </div>
+                  <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal tooltipped" id="addBut" data-position="left" data-tooltip="Add a new job position" style="position: fixed;margin-bottom: 5em;">
+                    <i class="material-icons" id="add">add</i>
+                  </a>
+              </div>
+            </div>
+            <div id="test2" class="col s12">
+              <div class="eachResult" style="border-bottom: 2px solid black;">
+                <table class="striped">
+                  <tbody>
+                    <tr>
+                      <td><p class="job">UI/UX DESIGN</p></td>
+                      <td></td>
+                      <td style="text-align: right;"><a href="#" class="waves-effect waves-light btn-small" id="accept">ACCEPT</a></td>
+                      <td><a href="#" class="waves-effect waves-light btn-small" id="decline">DECLINE</a></td>
+                    </tr>
+                    <tr>
+                      <td><p class="applied">Applied by : &nbsp;<b><a href="#">Pradeep</a></b></p><td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
+              </div>
+              <div class="eachResult" style="border-bottom: 2px solid black;">
+                <table class="striped">
+                  <tbody>
+                    <tr>
+                      <td><p class="job">PRODUCT DESIGN</p></td>
+                      <td></td>
+                      <td style="text-align: right;"><a href="#" class="waves-effect waves-light btn-small" id="accept">ACCEPT</a></td>
+                      <td><a href="#" class="waves-effect waves-light btn-small" id="decline">DECLINE</a></td>
+                    </tr>
+                    <tr>
+                      <td><p class="applied">Applied by : &nbsp;<b><a href="#">Gagan</a></b></p><td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
+              </div>
+            </div>
           </div>
-          <div class="eachResult" style="border-bottom: 2px solid black;">
-            <table class="striped">
-              <tbody>
-                <tr>
-                  <td><p class="job">Product Design</p><td>
-                </tr>
-                <tr>
-                  <td style="font-size: 13px;"><i class="material-icons" id="close">close</i>&nbsp;Un-active this week</td>
-                  <td style="font-size: 13px;"><i class="material-icons" id="account">account_circle</i>&nbsp;<b>12</b>&nbsp;Applicants last week</td>
-                  <td style="font-size: 13px;"><i class="material-icons" id="location">location_on</i>&nbsp;Dispur</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-          </div>
-          <div class="eachResult" style="border-bottom: 2px solid black;">
-            <table class="striped">
-              <tbody>
-                <tr>
-                  <td><p class="job">Geographical</p><td>
-                </tr>
-                <tr>
-                  <td style="font-size: 13px;"><i class="material-icons" id="close">close</i>&nbsp;Un-active this week</td>
-                  <td style="font-size: 13px;"><i class="material-icons" id="account">account_circle</i>&nbsp;<b>4</b>&nbsp;Applicants last week</td>
-                  <td style="font-size: 13px;"><i class="material-icons" id="location">location_on</i>&nbsp;Dispur</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-          </div>
-          <div class="eachResult" style="border-bottom: 2px solid black;">
-            <table class="striped">
-              <tbody>
-                <tr>
-                  <td><p class="job">Computer tech</p><td>
-                </tr>
-                <tr>
-                  <td style="font-size: 13px;"><i class="material-icons" id="check">check</i>&nbsp;Active this week</td>
-                  <td style="font-size: 13px;"><i class="material-icons" id="account">account_circle</i>&nbsp;<b>18</b>&nbsp;Applicants last week</td>
-                  <td style="font-size: 13px;"><i class="material-icons" id="location">location_on</i>&nbsp;Dispur</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-          </div>
-          <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal tooltipped" id="addBut" data-position="left" data-tooltip="Add a new job position" style="position: fixed;margin-bottom: 5em;">
-            <i class="material-icons" id="add">add</i>
-          </a>
-      </div>
+        </div>
       <div class="container" id="addForm">
           <h4 style="text-align: center;">Add a job position</h4>
           <br>
@@ -175,14 +213,15 @@
           $('.sidenav').sidenav();
           $('.datepicker').datepicker();
           $('.tooltipped').tooltip();
+          $('.tabs').tabs();
           $("#addForm").hide();
           $("#addBut").click(function() {
             $("#addForm").fadeIn(500);
-            $("#content").hide();
+            $("#admin_content").hide();
           });
           $("#back").click(function() {
             $("#addForm").hide();
-            $("#content").fadeIn(500);
+            $("#admin_content").fadeIn(500);
           });
       });
     </script>

@@ -44,7 +44,7 @@ main {
   opacity: 0.6;
 }
 
-#signup, #login, #adds, #back, #filterB {
+#signup, #login, #adds, #back, #filterB, #accept, #decline {
   border-radius: 30px;
   width: 100px;
   background-color: #f3efef;
@@ -198,6 +198,13 @@ footer {
   text-transform: uppercase;
 }
 
+.eachResult .applied {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .eachResult .start_date {
   font-size: 13px;
 }
@@ -224,7 +231,7 @@ footer {
 }
 
 #addForm {
-  padding-top: 5em;
+  padding-top: 2em;
 }
 
 #titlesec {
