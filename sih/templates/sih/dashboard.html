@@ -12,22 +12,12 @@
     <div class="container-fluid" id="second">
       <ul id="dropdown1" class="dropdown-content">
         <li><a href="#!">Settings</a></li>
-<<<<<<< 9a231850b19c9348b599f8200a2e3603ac23ee07
-        <li><a href="#!">Profile</a></li>
-        <li class="divider"></li>
-        <li><a href="#!">Logout</a></li>
-      </ul>
-      <nav id="navTop">
-        <div class="nav-wrapper">
-          <img src="../../static/img/logo.svg" width="120" height="120">
-=======
         <li><a href="{% url 'sih:profile' %}">Profile</a></li>
         <li class="divider"></li>
-        <li><a href="{% url 'sih:logout' %}">Logout</a></li>
+        <li><a href="/accounts/logout">Logout</a></li>
       </ul>
       <nav id="navTop">
         <div class="nav-wrapper">
->>>>>>> Dept Admin Dashboard
           <ul class="right hide-on-med-and-down">
           </ul>
         </div>
@@ -35,7 +25,6 @@
       <nav id="navLogo">
         <div class="nav-wrapper">
           <ul class="right hide-on-med-and-down">
-<<<<<<< 9a231850b19c9348b599f8200a2e3603ac23ee07
             <li><img src="../../static/img/dp.jpg" width="45" height="45" id="dp"></li>
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">{{request.user.first_name}}<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
@@ -279,329 +268,11 @@
                   <br>
                 </div>-->
               </div>
-              <div id="test3" class="col s12">
-                <br>
-                <div class="eachResult" style="border-bottom: 2px solid black;">
-                  <table class="striped">
-                    <tbody>
-                      <tr>
-                        <td><p class="dept">DEPT. OF DESIGN</p></td>
-                        <td></td>
-                        <td></td>
-                        <td>ACCEPTED&nbsp;&nbsp;<i class="fas fa-check-circle" style="color: #00ff00;font-size: 24px;"></i></td>
-                      </tr>
-                      <tr>
-                        <td><p class="job">UI/UX Design</p><td>
-                      </tr>
-                      <tr>
-                        <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                        <td></td>
-                        <td></td>
-
-                        <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">29<sup>th</sup>April'18</p></td>
-
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br>
-                </div>
-                <div class="eachResult" style="border-bottom: 2px solid black;">
-                  <table class="striped">
-                    <tbody>
-                      <tr>
-                        <td><p class="dept">DEPT. OF HISTORY</p></td>
-                        <td></td>
-                        <td></td>
-                        <td>ONLY&nbsp;<b>3</b>&nbsp;LEFT&nbsp;&nbsp;<i class="fas fa-exclamation-triangle" style="color: #ff0000;font-size: 24px;"></i></td>
-                      </tr>
-                      <tr>
-                        <td><p class="job">UI/UX Design</p><td>
-                      </tr>
-                      <tr>
-                        <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                        <td></td>
-                        <td></td>
-
-                        <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">29<sup>th</sup>April'18</p></td>
-
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br>
-                </div>
-                <div class="eachResult" style="border-bottom: 2px solid black;">
-                  <table class="striped">
-                    <tbody>
-                      <tr>
-                        <td><p class="dept">DEPT. OF HISTORY</p></td>
-                        <td></td>
-                        <td></td>
-
-                        <td>RECENT&nbsp;&nbsp;<i class="fas fa-star" style="color: #ffd700;font-size: 24px;"></i></td>
-                      </tr>
-                      <tr>
-                        <td><p class="job">Historical findings</p><td>
-                      </tr>
-                      <tr>
-                        <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Gurgaon</p></td>
-                        <td></td>
-                        <td></td>
-                        <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">30<sup>th</sup>May'18</p></td>
-
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br>
-                </div>
-                <div class="eachResult" style="border-bottom: 2px solid black;">
-                  <table class="striped">
-                    <tbody>
-                      <tr>
-                        <td><p class="dept">DEPT. OF DESIGN</p></td>
-                        <td></td>
-                        <td></td>
-                        <td>ACCEPTED&nbsp;&nbsp;<i class="fas fa-check-circle" style="color: #00ff00;font-size: 24px;"></i></td>
-                      </tr>
-                      <tr>
-                        <td><p class="job">UI/UX Design</p><td>
-                      </tr>
-                      <tr>
-                        <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                        <td></td>
-                        <td></td>
-
-                        <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">29<sup>th</sup>April'18</p></td>
-
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br>
-                </div>
-                <div class="eachResult" style="border-bottom: 2px solid black;">
-                  <table class="striped">
-                    <tbody>
-                      <tr>
-                        <td><p class="dept">DEPT. OF DESIGN</p></td>
-                        <td></td>
-                        <td></td>
-                        <td>ACCEPTED&nbsp;&nbsp;<i class="fas fa-check-circle" style="color: #00ff00;font-size: 24px;"></i></td>
-                      </tr>
-                      <tr>
-                        <td><p class="job">UI/UX Design</p><td>
-                      </tr>
-                      <tr>
-                        <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                        <td></td>
-                        <td></td>
-
-                        <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">29<sup>th</sup>April'18</p></td>
-
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
       </div>
-=======
-            <li><img src="./img/dp.jpg" width="45" height="45" id="dp"></li>
-            <li><a class="dropdown-trigger" href="{% url 'sih:profile' %}" data-target="dropdown1" id="username">{{ user.username }}<i class="material-icons right">arrow_drop_down</i></a></li>
-          </ul>
-        </div>
-      </nav>
-      <div class="container" id="content">
-        <div class="row" style="padding-top: 3em;">
-            <div class="col s12">
-              <ul class="tabs">
-                <li class="tab col s3"><a class="active" href="#test1">JOBS</a></li>
-                <li class="tab col s3"><a href="#test2">APPLIED JOBS </a></li>
-              </ul>
-            </div>
-            <div id="test1" class="col s12">
-              <h5 style="font-size: 13px;"><b>3,416</b>&nbsp;job vacancies<h5>
-              <div class="eachResult" style="border-bottom: 2px solid black;">
-                <table class="striped">
-                  <tbody>
-
-
-                    {% for
-
-
-
-
-
-
-                    <tr>
-                      <td><p class="dept">DEPT. OF DESIGN</p></td>
-                      <td></td>
-                      <td></td>
-                      <td><a href="#" class="waves-effect waves-light btn-small" id="apply">APPLY</a></td>
-                    </tr>
-                    <tr>
-                      <td><p class="job">UI/UX Design</p><td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">29<sup>th</sup>April'18</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                          <td style="font-size: 13px;"><span id="titlesec">POSTED ON</span><p id="descp">30<sup>th</sup>March'18</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">APPLY BY</span><p id="descp">31<sup>st</sup>May'18</p></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-              </div>
-              <div class="eachResult" style="border-bottom: 2px solid black;">
-                <table class="striped">
-                  <tbody>
-                    <tr>
-                      <td><p class="dept">DEPT. OF DESIGN</p></td>
-                      <td></td>
-                      <td></td>
-                      <td><a href="#" class="waves-effect waves-light btn-small" id="apply">APPLY</a></td>
-                    </tr>
-                    <tr>
-                      <td><p class="job">UI/UX Design</p><td>
-
-                    </tr>
-                    <tr>
-                      <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">29<sup>th</sup>April'18</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                          <td style="font-size: 13px;"><span id="titlesec">POSTED ON</span><p id="descp">30<sup>th</sup>March'18</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">APPLY BY</span><p id="descp">31<sup>st</sup>May'18</p></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-              </div>
-              <div class="eachResult" style="border-bottom: 2px solid black;">
-                <table class="striped">
-                  <tbody>
-                    <tr>
-                      <td><p class="dept">DEPT. OF DESIGN</p></td>
-                      <td></td>
-                      <td></td>
-                      <td><a href="#" class="waves-effect waves-light btn-small" id="apply">APPLY</a></td>
-                    </tr>
-                    <tr>
-                      <td><p class="job">UI/UX Design</p><td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">29<sup>th</sup>April'18</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                          <td style="font-size: 13px;"><span id="titlesec">POSTED ON</span><p id="descp">30<sup>th</sup>March'18</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">APPLY BY</span><p id="descp">31<sup>st</sup>May'18</p></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-              </div>
-              <div class="eachResult" style="border-bottom: 2px solid black;">
-                <table class="striped">
-                  <tbody>
-                    <tr>
-                      <td><p class="dept">DEPT. OF DESIGN</p></td>
-                      <td></td>
-                      <td></td>
-                      <td><a href="#" class="waves-effect waves-light btn-small" id="apply">APPLY</a></td>
-                    </tr>
-                    <tr>
-                      <td><p class="job">UI/UX Design</p><td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 13px;"><span id="titlesec">START DATE</span><p id="descp">29<sup>th</sup>April'18</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                          <td style="font-size: 13px;"><span id="titlesec">POSTED ON</span><p id="descp">30<sup>th</sup>March'18</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">APPLY BY</span><p id="descp">31<sup>st</sup>May'18</p></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-              </div>
-
-            </div>
-            <div id="test2" class="col s12">
-              <h5 style="font-size: 13px;">Applied for <b>4</b>&nbsp;jobs<h5>
-              <div class="eachResult" style="border-bottom: 2px solid black;">
-                <table class="striped">
-                  <tbody>
-                    <tr>
-                      <td><p class="dept">DEPT. OF DESIGN</p></td>
-                    </tr>
-                    <tr>
-                      <td><p class="job">UI/UX Design</p><td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 13px;"><span id="titlesec">STATUS</span><p id="descp"><b>26</b> others applied</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">APPLIED ON</span><p id="descp">30<sup>th</sup>March'18</p></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-              </div>
-              <div class="eachResult" style="border-bottom: 2px solid black;">
-                <table class="striped">
-                  <tbody>
-                    <tr>
-                      <td><p class="dept">DEPT. OF DESIGN</p></td>
-                    </tr>
-                    <tr>
-                      <td><p class="job">UI/UX Design</p><td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 13px;"><span id="titlesec">STATUS</span><p id="descp"><b>26</b> others applied</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">APPLIED ON</span><p id="descp">30<sup>th</sup>March'18</p></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-              </div>
-              <div class="eachResult" style="border-bottom: 2px solid black;">
-                <table class="striped">
-                  <tbody>
-                    <tr>
-                      <td><p class="dept">DEPT. OF DESIGN</p></td>
-                    </tr>
-                    <tr>
-                      <td><p class="job">UI/UX Design</p><td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 13px;"><span id="titlesec">STATUS</span><p id="descp"><b>26</b> others applied</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">APPLIED ON</span><p id="descp">30<sup>th</sup>March'18</p></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-              </div>
-              <div class="eachResult" style="border-bottom: 2px solid black;">
-                <table class="striped">
-                  <tbody>
-                    <tr>
-                      <td><p class="dept">DEPT. OF DESIGN</p></td>
-                    </tr>
-                    <tr>
-                      <td><p class="job">UI/UX Design</p><td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 13px;"><span id="titlesec">STATUS</span><p id="descp"><b>26</b> others applied</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">LOCATION</span><p id="descp">Mumbai</p></td>
-                      <td style="font-size: 13px;"><span id="titlesec">APPLIED ON</span><p id="descp">30<sup>th</sup>March'18</p></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-              </div>
-            </div>
-
-          </div>
-        </div>
->>>>>>> Dept Admin Dashboard
         <!-- <footer class="page-footer" style="background-color: white;opacity: 0.7;">
            <div class="container">
 
@@ -621,11 +292,8 @@
           $(".dropdown-trigger").dropdown();
           $('.sidenav').sidenav();
           $('.tabs').tabs();
-<<<<<<< 9a231850b19c9348b599f8200a2e3603ac23ee07
           $('select').formSelect();
           $('.datepicker').datepicker();
-=======
->>>>>>> Dept Admin Dashboard
       });
     </script>
   </body>
