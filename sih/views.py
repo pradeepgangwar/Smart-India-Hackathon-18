@@ -192,13 +192,15 @@ def profile_edit(request):
     else:
         return redirect('sih:signup')
 
-def vacancies(request):
+def vacancies(request, deptID):
+    print(deptID)
     if request.user.is_authenticated:
         if request.method=="POST":
             form = Vacancy(request.POST)
             if form.is_valid():
                 title = request.POST.get('title')
                 description = request.POST.get('description')
+                dept_id = deptID
                 num_slots = int(request.POST.get('num_slots'))
                 location = request.POST.get('location')
                 
@@ -210,12 +212,13 @@ def vacancies(request):
                 else:
                     results_out = False
                 dept_user = DeptProfile.objects.get(user=request.user)
+
                 New_vacancy = vacancy.objects.create(title=title,description=description,num_slots=num_slots,location=location,start_date=start_date,end_date=end_date,results_out=results_out,dept_id=dept_user)
                 New_vacancy.save()
         else:
             form = Vacancy()
-            
-        return render(request, 'sih/vacancies.html', {'form': form, 'status':'logged_in'})
+
+        return redirect('sih:dept_admin')
 
     else:
         return redirect('sih:signup')
@@ -280,6 +283,26 @@ def dashboard(request):
 
     vacancie=v
     return render(request,'sih/dashboard.html',{'num_of_applied':len(applied),'applied':applied,'num_of_vacancies':len(vacancie),'vacancies':vacancie,'department':department,'locations':locations,'message':message})
+
+@login_required
+def dept_admin(request):
+    userProfile = UserProfile.objects.get(user=request.user)
+    deptProfile = DeptProfile.objects.get(user=request.user)
+    vac = vacancy.objects.filter(dept_id=deptProfile.id).order_by('-end_date')
+    return render(request, 'sih/dept_admin.html', {'userProfile':userProfile, 'deptProfile':deptProfile, 'vacancy':vac})
+
+def change_status(request, jobID):
+    print(jobID)
+    job = vacancy.objects.get(pk=jobID)
+    print(job)
+    print(job.results_out)
+    if job.results_out is False:
+        job.results_out = True
+    else:
+        job.results_out = False
+    job.save()
+
+    return redirect('sih:dept_admin')
 
 
 def apply(request,job1):

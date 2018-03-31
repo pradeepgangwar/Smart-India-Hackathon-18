@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^dept_admin/$', views.dept_admin, name='dept_admin'),
     url(r'^dashboard/$',views.dashboard, name='dashboard'),
     url(r'^apply/(?P<job1>[-\w]+)/$',views.apply, name='apply')
+    url(r'^change_status/(?P<jobID>\d+)/$', views.change_status, name='change_status'),
 ]
